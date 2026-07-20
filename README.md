@@ -18,7 +18,8 @@ skills/
 ├── adp/                     # ADP Workforce Now
 ├── slack/                    # Slack
 ├── power-platform/            # Power Automate / Power BI
-└── zendesk/                    # Zendesk
+├── zendesk/                    # Zendesk
+└── consulting/                  # Client-services scoping, tracking, transitions
 ```
 
 Each skill folder contains:
@@ -93,6 +94,21 @@ Each skill folder contains:
 ### Zendesk
 
 - **[zendesk-api-integrate](zendesk/zendesk-api-integrate/SKILL.md)** — Integrate with the Zendesk API — auth, core resources, Triggers/Automations for ticket routing, and incremental export for syncing.
+
+### Consulting
+
+Client-services skills for scoping, tracking, and transitioning engagements — platform-agnostic. Full list: [consulting/README.md](consulting/README.md).
+
+- **[discovery-call-prep](consulting/discovery-call-prep/SKILL.md)** — Prepares a structured discovery call agenda and question list for a new client engagement.
+- **[proposal-scope-estimate](consulting/proposal-scope-estimate/SKILL.md)** — Turns discovery/requirements notes into a scoped proposal with effort estimates.
+- **[sow-draft-generate](consulting/sow-draft-generate/SKILL.md)** — Drafts a Statement of Work from discovery notes or a requirements doc.
+- **[change-order-draft](consulting/change-order-draft/SKILL.md)** — Drafts a change order when scope shifts mid-engagement.
+- **[meeting-notes-action-extract](consulting/meeting-notes-action-extract/SKILL.md)** — Converts raw meeting notes/transcripts into decisions and owned, dated action items.
+- **[status-report-generate](consulting/status-report-generate/SKILL.md)** — Generates a client-facing status report from raw internal activity.
+- **[risk-register-track](consulting/risk-register-track/SKILL.md)** — Maintains a project risk register and flags stale or unowned entries.
+- **[client-context-switch](consulting/client-context-switch/SKILL.md)** — Reconstructs a compact briefing for a specific client when switching back to it among multiple concurrent engagements.
+- **[handoff-doc-generate](consulting/handoff-doc-generate/SKILL.md)** — Produces a project handoff/knowledge-transfer doc when rolling off or transitioning an engagement.
+- **[engagement-retro-facilitate](consulting/engagement-retro-facilitate/SKILL.md)** — Runs a structured end-of-engagement retrospective and converts it into action items.
 
 ## License
 
