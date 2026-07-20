@@ -1,0 +1,407 @@
+<title>VurtuoLabs Skills Library</title>
+<style>
+  @font-face {
+    font-family: "system-serif";
+    src: local("New York"), local("Iowan Old Style");
+  }
+  :root {
+    --bg: #f2f3f5;
+    --surface: #ffffff;
+    --surface-2: #eceef1;
+    --ink: #1a1d21;
+    --ink-muted: #5b6169;
+    --ink-faint: #8a9098;
+    --border: #dde0e4;
+    --accent: #b6532c;
+    --accent-ink: #ffffff;
+    --accent-soft: #f2e2d8;
+    --focus: #2f6fb0;
+    --radius: 5px;
+    --serif: ui-serif, "New York", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14161a;
+      --surface: #1c1f24;
+      --surface-2: #23262c;
+      --ink: #eef0f2;
+      --ink-muted: #9aa0a8;
+      --ink-faint: #6b7178;
+      --border: #2a2e34;
+      --accent: #e2803f;
+      --accent-ink: #14161a;
+      --accent-soft: #3a2c22;
+      --focus: #6ab0f0;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14161a; --surface: #1c1f24; --surface-2: #23262c; --ink: #eef0f2;
+    --ink-muted: #9aa0a8; --ink-faint: #6b7178; --border: #2a2e34;
+    --accent: #e2803f; --accent-ink: #14161a; --accent-soft: #3a2c22; --focus: #6ab0f0;
+  }
+  :root[data-theme="light"] {
+    --bg: #f2f3f5; --surface: #ffffff; --surface-2: #eceef1; --ink: #1a1d21;
+    --ink-muted: #5b6169; --ink-faint: #8a9098; --border: #dde0e4;
+    --accent: #b6532c; --accent-ink: #ffffff; --accent-soft: #f2e2d8; --focus: #2f6fb0;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  a { color: var(--accent); }
+  ::selection { background: var(--accent-soft); }
+
+  .masthead {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  .masthead-inner {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.5rem;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+    letter-spacing: -0.01em;
+    margin: 0 0 0.4rem;
+    text-wrap: balance;
+  }
+  .sub {
+    color: var(--ink-muted);
+    font-size: 0.98rem;
+    line-height: 1.55;
+    max-width: 62ch;
+    margin: 0 0 1.25rem;
+  }
+  .install-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .install-code {
+    font-family: var(--mono);
+    font-size: 0.86rem;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.5rem 0.75rem;
+    color: var(--ink);
+  }
+  .copy-btn {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.55rem 0.9rem;
+    cursor: pointer;
+    transition: opacity 0.12s ease;
+  }
+  .copy-btn:hover { opacity: 0.85; }
+  .copy-btn:focus-visible, a:focus-visible, input:focus-visible, .chip:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+  .copy-btn[data-copied="true"]::after { content: " \2713"; }
+
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 1.5rem;
+  }
+  .toolbar-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.55rem 0.75rem;
+  }
+  .search-wrap svg { flex-shrink: 0; color: var(--ink-faint); }
+  #search {
+    border: none;
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    width: 100%;
+    outline: none;
+  }
+  #search::placeholder { color: var(--ink-faint); }
+  .count {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .chip {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.32rem 0.7rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    line-height: 1;
+    transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+  }
+  .chip .n {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+  .chip:hover { border-color: var(--accent); }
+  .chip[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+  }
+  .chip[aria-pressed="true"] .n { color: var(--accent-ink); opacity: 0.8; }
+
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 4rem;
+  }
+  .category-section { margin-bottom: 2rem; }
+  .category-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: 0 0 0.6rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .category-heading h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.15rem;
+    margin: 0;
+  }
+  .category-heading .n {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    color: var(--ink-faint);
+  }
+  .rows { display: flex; flex-direction: column; }
+  .row {
+    display: grid;
+    grid-template-columns: minmax(180px, 260px) 1fr auto;
+    gap: 1rem;
+    align-items: start;
+    padding: 0.7rem 0.5rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: inherit;
+  }
+  .row:hover { background: var(--surface); }
+  .row:hover .go { opacity: 1; transform: translateX(0); }
+  .skill-name {
+    font-family: var(--mono);
+    font-size: 0.87rem;
+    font-weight: 600;
+    color: var(--ink);
+    word-break: break-word;
+  }
+  .skill-desc {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+  .go {
+    color: var(--ink-faint);
+    opacity: 0;
+    transform: translateX(-3px);
+    transition: opacity 0.12s ease, transform 0.12s ease;
+    align-self: center;
+  }
+  .empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--ink-faint);
+    font-size: 0.92rem;
+  }
+  footer {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 3rem;
+    color: var(--ink-faint);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--ink-muted); }
+
+  @media (max-width: 620px) {
+    .row { grid-template-columns: 1fr; gap: 0.25rem; }
+    .go { display: none; }
+  }
+</style>
+
+<div class="masthead">
+  <div class="masthead-inner">
+    <p class="eyebrow">VurtuoLabs / Claude Code Skills</p>
+    <h1>133 skills for Salesforce, the enterprise stack, and the agents that run on both.</h1>
+    <p class="sub">A directory of Claude Code skills built and vendored by VurtuoLabs \u2014 covering Agentforce and the Salesforce platform, the enterprise systems consultants integrate with, client-services practice, and advanced agentic architecture.</p>
+    <div class="install-row">
+      <code class="install-code">npx skills add VurtuoLabs/skills</code>
+      <button class="copy-btn" id="copyInstall" type="button">Copy</button>
+      <a href="https://github.com/VurtuoLabs/skills" target="_blank" rel="noopener" style="font-size:0.85rem; color:var(--ink-muted); margin-left:0.25rem;">View repo &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search-wrap">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="search" type="text" placeholder="Search skills by name or what they do\u2026" autocomplete="off" />
+      <span class="count" id="resultCount"></span>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+</div>
+
+<main id="main"></main>
+
+<footer>
+  Snapshot of <a href="https://github.com/VurtuoLabs/skills" target="_blank" rel="noopener">VurtuoLabs/skills</a> at the time this page was generated. Skill counts and content live in the repo \u2014 this page reflects a point-in-time export, not a live feed.
+</footer>
+
+<script>
+  const DATA = [{"category": "salesforce", "categoryLabel": "Salesforce", "name": "agent-analyzer", "description": "Validate a Script agent against the Legacy agent baseline. Drives paired multi-turn sessions via `sf agent preview`, collects transcripts from both agents, and runs LLM-based 3-dimension evaluation (response quality, data handling, error handling) to produce a PASS/FAIL parity report."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "agentforce-architecture-analyze", "description": "Declared architecture snapshot for one Agentforce agent: planner, topics, actions, flows, Apex, prompt templates, and NGA plugins. Renders a human-readable architecture document and Mermaid invocation graph from design-time metadata (not runtime audit rows)."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "agentforce-d360-analyze", "description": "Data Cloud 360° view of a single Agentforce session."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "agentforce-generate", "description": "Build, modify, debug, and deploy agents with Agentforce Agent Script."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "agentforce-observe", "description": "Analyze production Agentforce agent behavior using session traces and Data Cloud."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "agentforce-test", "description": "Write, run, and analyze structured test suites for Agentforce agents."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "automation-flow-generate", "description": "Generate Salesforce Flows using the MCP tool execute_metadata_action. Use when the user asks to create, build, or generate a flow — including Screen, Autolaunched, Record-Triggered (before/after-save), Scheduled. Also trigger for flow-like requests such as \"when a record is created\", \"trigger daily at\", \"send an email when\", \"update the field when\", \"automate\", \"workflow\", or \"flow XML/metadata\". This is the only skill for Salesforce Flow generation."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "commerce-b2b-open-code-components-integrate", "description": "Integrate Salesforce B2B Commerce open source components from GitHub into B2B Commerce stores. Use when users mention \"integrate open code components\", \"open source B2B commerce\", \"add open code components\", \"forcedotcom/b2b-commerce-open-source-components\", or want to add open source commerce components to their store. Copies all components and labels so they become available in Experience Builder."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "commerce-b2b-open-code-components-replace", "description": "Replace OOTB (out-of-the-box) B2B Commerce components with open source equivalents in site metadata content.json files, or look up the equivalent open code `site:` component for OOTB definitions. Use when users mention \"replace OOTB components\", \"replace commerce components with open code\", \"swap OOTB for open source\", \"replace commerce_builder:\", \"replace OOTB in site\", \"replace component in site metadata\", \"replace component definition\", \"find open code equivalent\", \"equivalent open code component\", \"OOTB to open code mapping\", \"what is the site component for\", components \"in this view\" or \"for a given view\", or a specific list of component names — and want to update or only discover mappings in their store metadata."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "commerce-b2b-store-create", "description": "Interactive workflow to create Commerce B2B Stores and retrieve storefront metadata. Use when users want to: create B2B Commerce stores, build Commerce storefronts, set up B2B stores from Vibes, retrieve Commerce metadata, deploy Commerce experiences, work with DigitalExperienceBundle for Commerce."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "data360-activate", "description": "Salesforce Data Cloud Act phase. Use this skill when the user manages activations, activation targets, data actions, or downstream delivery of Data Cloud audiences and data."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "data360-code-extension-generate", "description": "Develop and deploy Data Cloud Code Extensions using SF CLI plugin. Use this skill when creating custom Python transformations for Data Cloud, deploying code extensions, or testing data transformations. Supports init, run, scan, and deploy operations."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "data360-connect", "description": "Salesforce Data Cloud Connect phase. Use this skill when the user manages Data Cloud connections, connectors, or sets up a new source system."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "data360-harmonize", "description": "Salesforce Data Cloud Harmonize phase. Use this skill when the user works with DMOs, mappings, relationships, identity resolution, unified profiles, data graphs, or universal IDs."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "data360-orchestrate", "description": "Salesforce Data Cloud product orchestrator for connect→prepare→harmonize→segment→act workflows. Use this skill when the user needs a multi-step Data Cloud pipeline, cross-phase troubleshooting, or data space and data kit management."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "data360-prepare", "description": "Salesforce Data Cloud Prepare phase. Use this skill when the user creates or manages Data Cloud data streams, DLOs, transforms, or Document AI configurations."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "data360-query", "description": "Salesforce Data Cloud Retrieve phase. Use this skill when the user runs Data Cloud SQL, async queries, vector search, search-index workflows, or metadata introspection for Data Cloud objects."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "data360-schema-get", "description": "Retrieve Data Lake Object (DLO) and Data Model Object (DMO) schema information from Salesforce Data Cloud using REST APIs. Use this skill when you need to inspect DLO or DMO field definitions, data types, or metadata. Takes org alias and optional DLO/DMO name as parameters."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "data360-segment", "description": "Salesforce Data Cloud Segment phase. Use this skill when the user creates or publishes segments, manages calculated insights, or troubleshoots audience SQL in Data Cloud."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "design-systems-slds-apply", "description": "Apply SLDS-compliant UI using the correct blueprints, styling hooks, utility classes, and icons. Use when building any UI that needs SLDS, choosing between Lightning Base Components and SLDS Blueprints, applying styling hooks for theming, using utility classes for layout and spacing, or selecting icons. Triggers include \"build a modal\", \"create a form\", \"data table\", \"SLDS styling\", \"style with hooks\", \"add an icon\"."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "design-systems-slds-validate", "description": "Audit Lightning Web Components for SLDS compliance and produce a scored quality report. Runs the SLDS linter, analyzes CSS for theming hook usage and pairing, checks HTML for accessibility attributes, and scores findings across categories into an overall grade. Use when asked to \"score my component\", \"SLDS scorecard\", \"quality report\", \"audit SLDS compliance\", \"how good is my SLDS\", \"check component quality\", \"rate my component\", \"evaluate my component\", \"is this component ready to ship?\", \"look at my LWC for issues\", \"audit this before I submit\", \"review my component before code review\", or any time a user wants a quality assessment or production-readiness check on an LWC or SLDS component. Not for fixing violations (use design-systems-slds2-migrate) or building new components (use design-systems-slds-apply)."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "design-systems-slds2-migrate", "description": "Migrate Lightning Web Components from SLDS 1 to SLDS 2 by running the SLDS linter and fixing violations. Use this skill whenever users mention SLDS 2, SLDS uplift, linter violations, LWC token migration, class overrides, hardcoded CSS values that need SLDS hook replacement, or styling hook selection. Covers all styling hook categories — color, spacing, sizing, typography, borders, radius, and shadows. Also use when users mention no-hardcoded-values, no-slds-class-overrides, lwc-to-slds-hooks, no-deprecated-tokens-slds1, or ask about SLDS component migration — even if they don't explicitly say \"uplift\" or \"migration\"."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "dx-app-analytics-query", "description": "ISV App Analytics metadata types — AppAnalyticsQueryRequest and AppAnalyticsSettings. Use this skill when the user asks about retrieving managed package usage data, configuring App Analytics simulation mode, querying subscriber snapshots, or understanding the AppAnalyticsQueryRequest lifecycle (New → Pending → Complete → Expired)."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "dx-code-analyzer-configure", "description": "Set up, configure, and troubleshoot Salesforce Code Analyzer for any project. Handles installation, prerequisite checks, diagnosing broken setups, creating and editing code-analyzer.yml overrides, engine-specific settings, ignore patterns, severity overrides, and CI/CD pipeline setup."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "dx-code-analyzer-custom-rule-create", "description": "Create custom Code Analyzer rules for Regex (pattern matching), PMD (XPath/AST for Apex and metadata XML), and ESLint (LWC/JavaScript/TypeScript). Use when users want to enforce coding standards, ban patterns, detect hardcoded values, govern metadata, or add rules not in the built-in set."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "dx-code-analyzer-run", "description": "Run Salesforce Code Analyzer to scan code for security, performance, best practice, and code style violations. Supports all engines (PMD, ESLint, CPD, RetireJS, Flow, SFGE, ApexGuru), targets (files, folders, git diff), categories, and severities. Also handles post-scan exploration: filtering results by engine/severity/category/file, and explaining what rules mean."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "dx-devops-test-failures-analyze", "description": "Analyzes DevOps Center test failures and Code Analyzer violations in plain language — failure category, offending file/class/method/line, rule violated, fix direction, and prioritized improvement suggestions (test-code vs production-code) — then optionally creates a tracked fix WorkItem on explicit request. Analysis is pure reasoning; work-item creation is a confirmation-gated write. Use this skill to explain failures or improvement suggestions, translate Code Analyzer violations, or track a fix as a work item."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "dx-devops-test-pipeline-configure", "description": "Configures DevOps Center pipeline testing infrastructure: enables a test provider so its suites become available, re-syncs a configured provider to pull in new suites, or creates a quality gate with rules on a stage. Routes by intent across three modes after running shared prerequisite checks and an explicit confirmation gate. Use this skill when a user wants to set up, configure, enable, sync, or refresh a test provider, or set/configure a quality gate or coverage threshold on a DevOps Center pipeline stage."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "dx-devops-test-suite-assignments-configure", "description": "Recommends and manages DevOps Center test suite assignments for pipeline stages. Mode A analyzes a commit diff against assigned suite metadata to recommend relevant existing suites and flag coverage gaps (pure reasoning). Modes B-D assign a single suite, bulk-map multiple suites with a mandatory impact preview, or add/remove test classes with governance rules, via the testSuiteStages Connect API. Use this skill to recommend suites for a commit, assign or map suites to stages, or add/remove tests in a suite."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "dx-devops-test-suite-run", "description": "Runs DevOps Center test suites on a pipeline stage (Pre-Promote, Post-Promote, or Review event) end to end: triggers async execution via the Connect API after an explicit confirmation gate, then polls by runId at provider-specific intervals until it completes, fails, or times out, and hands results to failure analysis. Also retriggers a quality gate after fixes, but only once coverage meets the threshold. Use this skill when a user wants to run, kick off, or launch test suites on a stage, re-run a quality gate, or watch an in-progress run to completion."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "dx-org-manage", "description": "INVOKE this skill to execute Salesforce org operations: create scratch orgs, create org snapshots, open orgs in browser. This skill EXECUTES operations immediately - it does NOT generate scripts or code files. ALWAYS invoke this skill (do not execute SF CLI commands directly) when user requests to: create a scratch org (Developer/Enterprise edition, from definition file (.json), from snapshot, or from org shape), create an org snapshot, or open a Salesforce org. Trigger phrases include: 'create a snapshot', 'create snapshot of my scratch org', 'take a snapshot', 'create scratch org', 'create a Developer edition scratch org', 'new scratch org', 'spin up an org', 'create org from snapshot', 'scratch-def.json', 'project-scratch-def.json', 'open my Salesforce org', 'open org in browser', 'get me the URL'. Do NOT use for switching default org (use dx-org-switch) or deploying metadata (use platform-metadata-deploy)."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "dx-org-permission-set-assign", "description": "ALWAYS USE THIS SKILL to assign permission sets to org users. Assign one or more permission sets to org users using the sf org assign permset command."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "dx-org-switch", "description": "Switches the active Salesforce org (default target-org) using the Salesforce CLI. Use whenever someone wants to change which org CLI commands run against — whether they say \"switch org\", \"change default org\", \"set my org to\", \"use alias\", \"point to\", or describe wanting to work against a specific org, scratch org, sandbox, or production."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "dx-pkg-post-install-configure", "description": "Use this skill to automate managed package post-install configuration. Package-agnostic — works with any managed package (LMA, FMA, work.com, Certinia, etc.)."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "experience-cms-brand-apply", "description": "Extracts, retrieves, and applies CMS brand guidelines (voice, tone, style, colors, typography) to generated content. Use this skill ANY TIME a user request involves branding, brand voice, brand tone, brand guidelines, brand identity, brand styling, or applying a brand to content. Triggers for requests like \"apply my brand\", \"use our brand voice\", \"match our brand guidelines\", \"find my brand\", \"search for brand\", \"get brand instructions\", \"apply brand tone\". Handles the full workflow: searching for brands in Salesforce CMS, extracting brand instructions, and applying brand voice/tone/guidelines to generated content. Does not apply to media/image search (use experience-content-media-search skill), logo search, or creating new brand definitions."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "experience-content-media-search", "description": "Searches for and retrieves existing visual media (images, logos, icons, photos, graphics, banners, thumbnails, hero images, backgrounds) from sources such as Salesforce CMS, Data 360 or any other source. Use this skill ANY TIME a user request involves finding, searching, getting, fetching, retrieving, grab, looking up, locating media. NEVER call search_media_cms_channels, search_electronic_media tools directly — always go through this skill first. This skill must be activated before any tool is used for media search or retrieval, without exception. Takes PRIORITY and activates FIRST when ANY media search/retrieval is mentioned, regardless of what else happens with the media afterward. Triggers for requests like \"search for logo\", \"find hero image\", \"get company logo\", \"locate icons\", \"fetch background image\", \"retrieve product photos\". Handles the search and source selection workflow. Does not apply when the request is about brand search, to generate NEW images with AI, or edit existing images."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "experience-lwc-generate", "description": "Lightning Web Components with PICKLES methodology and 165-point scoring. Use this skill when the user creates or edits LWC components, builds wire service patterns, or writes Jest tests for LWC."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "experience-ui-bundle-agentforce-client-generate", "description": "Use this skill when the user asks to add, embed, integrate, configure, style, or remove an agent, chatbot, chat widget, conversation client, or AI assistant in a UI Bundle project."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "experience-ui-bundle-app-coordinate", "description": "MUST activate when the user wants to build, create, or generate a React application, React app, web application, single-page application (SPA), or frontend application — even if no project files exist yet. MUST also activate when the project contains a uiBundles/*/src/ directory or sfdx-project.json and the prompt says create, build, construct, or generate a new app, site, or page from scratch — even if the prompt also describes visual styling. MUST also activate when the task spans more than one ui-bundle skill. Use this skill when building a complete app end-to-end. Do NOT use for Lightning Experience apps with custom objects (use platform-lightning-app-coordinate). Do NOT use for single-concern edits to an existing page (use experience-ui-bundle-frontend-generate)."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "experience-ui-bundle-custom-app-generate", "description": "MUST activate when the project contains a uiBundles/*/src/ directory and the task involves creating or configuring a Custom Application for hosting a UI bundle in Lightning Experience. Use this skill when creating a CustomApplication metadata record to surface the UI bundle in the App Launcher. Activate when files matching applications/*.app-meta.xml exist and need modification, or when the user wants to expose their app via the Lightning App Launcher without a Digital Experience Site. Do NOT use platform-custom-application-generate for this — UI bundle apps do not use tabs, action overrides, or flexipages."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "experience-ui-bundle-deploy", "description": "MUST activate when the project contains a uiBundles/*/src/ directory or sfdx-project.json and the task involves deploying, pushing to an org, or post-deploy setup. Use this skill when deploying a UI bundle app to a Salesforce org. Covers the full deployment sequence: org authentication, pre-deploy build, metadata deployment, permission set assignment, data import, GraphQL schema fetch, and codegen. Activate when files like *.uibundle-meta.xml or sfdx-project.json exist and the user mentions deploying, pushing, org setup, or post-deploy tasks."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "experience-ui-bundle-features-generate", "description": "MUST activate when the project contains a uiBundles/*/src/ directory and the user wants to add authentication or search to their app. Use this skill when adding authentication or search to a UI bundle app. Only covers two features: authentication (login, logout, protected routes, session management) and search (global search across pages and content). Always use this skill for these two features instead of building from scratch."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "experience-ui-bundle-file-upload-generate", "description": "MUST activate when the project contains a uiBundles/*/src/ directory and the task involves uploading, attaching, or dropping files. Use this skill when adding file upload functionality to a UI bundle app. Provides progress tracking and Salesforce ContentVersion integration. This feature provides programmatic APIs ONLY — build custom UI using the upload() API. ALWAYS use this instead of building file upload from scratch with FormData or XHR."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "experience-ui-bundle-frontend-generate", "description": "MUST activate before editing ANY file under uiBundles/*/src/ for visual or UI changes to an EXISTING app — pages, components, sections, layout, styling, colors, fonts, navigation, animations, or any look-and-feel change. Use this skill when modifying pages, components, layout, styling, or navigation in an existing UI bundle app. Activate when the project contains appLayout.tsx, routes.tsx, src/pages/, src/components/, or global.css. This skill contains critical project-specific conventions (appLayout.tsx shell, shadcn/ui components, Tailwind CSS, Salesforce base-path routing, module restrictions) that override general knowledge. Without this skill, generated code will use wrong imports, break routing, or ignore project structure. Do NOT use when creating a new app from scratch (use experience-ui-bundle-app-coordinate instead)."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "experience-ui-bundle-metadata-generate", "description": "Use this skill when adding a front-end React UI bundle to an existing project or configuring UI bundle metadata and config files."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "experience-ui-bundle-salesforce-data-access", "description": "MUST activate when a uiBundles/*/src/ project does ANY Salesforce record operation — reading, creating, updating, deleting, or caching/refreshing query results. Triggers: code importing @salesforce/platform-sdk, calls to sdk.graphql.query / sdk.graphql.mutate / sdk.fetch, *.graphql files, stale data needing a force-refresh, or wiring up a UI bundle's data layer to read, write, or refresh Salesforce records. The default for new read/write work is the Read/Write workflow with the current @salesforce/platform-sdk API; only follow the migration path when EXISTING code already uses the old @salesforce/sdk-data callable form. Not for building app shell/UI, styling, file upload, or auth/search scaffolding — use the other ui-bundle-* skills. DO NOT"}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "experience-ui-bundle-site-generate", "description": "MUST activate when the project contains a uiBundles/*/src/ directory and the task involves creating or configuring site infrastructure. Use this skill when creating or configuring a Salesforce Digital Experience Site for hosting a UI bundle. Activate when files matching digitalExperiences/, networks/, customSite/, or DigitalExperienceBundle exist and need modification, or when the user wants to publish, host, or configure guest access for their app."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "external-diagram-mermaid-generate", "description": "Salesforce architecture diagrams using Mermaid with ASCII fallback. Use this skill when generating text-based diagrams for Salesforce architecture, OAuth flows, ERDs, integration sequences, or Agentforce structure."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "integration-connectivity-connected-app-configure", "description": "Salesforce Connected Apps and External Client Apps OAuth configuration with 120-point scoring. Use this skill to configure OAuth flows, JWT bearer auth, Connected Apps, and External Client Apps in Salesforce."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "integration-connectivity-generate", "description": "Salesforce integration architecture and runtime plumbing with 120-point scoring. Use this skill to set up Named Credentials, External Credentials, External Services, REST/SOAP callout patterns, Platform Events, and Change Data Capture."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "integration-eventing-cdc-configure", "description": "Use to enable Salesforce Change Data Capture (CDC) on a standard or custom object, configure a custom event channel, set a filter expression, or add enrichment fields."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "integration-eventing-subscription-configure", "description": "Create, read, update, and delete ManagedEventSubscription metadata in Salesforce. Use this skill for any work involving managed event subscriptions, platform event subscriptions, event channel subscribers, or .managedEventSubscription-meta.xml files."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "mobile-apps-create", "description": "The entry point for building any Salesforce native mobile app on iOS or Android."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "mobile-platform-native-capabilities-integrate", "description": "Build a Salesforce LWC that uses native mobile device capabilities — barcode scanner, biometrics, location, NFC, calendar, contacts, document scanner, geofencing, AR space capture, app review, and payments. Use this skill when the user asks for an LWC that scans a barcode, captures a photo of a document, reads location or geofences, prompts for biometrics, reads/writes the device calendar or contacts, taps NFC, takes a payment, prompts for an app review, or scans an AR space. Also triggers on \"lightning/mobileCapabilities\", \"mobile capability\", \"Nimbus\", \"device capability\". Do not use for mobile offline / Komaci priming reviews (use `mobile-platform-offline-validate`) or for picking generic Lightning base components (use `design-systems-slds-apply`)."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "mobile-platform-offline-validate", "description": "Review a Lightning Web Component for **mobile offline** compatibility — the Komaci offline static analyzer that pre-primes the data graph for Salesforce Mobile App Plus and Field Service Mobile App. Produces a finding list with code-level fixes covering inline GraphQL queries in `@wire` configurations, modern `lwc:if` / `lwc:elseif` / `lwc:else` directives, and Komaci ESLint rule violations (private wire properties, non-local reactive references, getter side-effects). Use when the user asks for a \"mobile offline review\", \"Komaci check\", \"offline priming audit\", \"offline priming failure\", or \"offline data graph error\", or to validate an LWC against the `@salesforce/eslint-plugin-lwc-graph-analyzer` recommended ruleset. Do not use for generic LWC code review (use an appropriate domain review skill) or for building LWCs with native mobile capabilities (use `mobile-platform-native-capabilities-integrate`)."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "omnistudio-callable-apex-generate", "description": "Salesforce Industries Common Core (OmniStudio/Vlocity) Apex callable generation and review skill with 120-point scoring. Use when creating, reviewing, or migrating Industries callable Apex implementations."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "omnistudio-datamapper-generate", "description": "OmniStudio Data Mapper (formerly DataRaptor) creation and validation with 100-point scoring. Use when building Extract, Transform, Load, or Turbo Extract Data Mappers, mapping Salesforce object fields, or reviewing existing Data Mapper configurations."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "omnistudio-datapacks-deploy", "description": "Salesforce Industries DataPack deployment automation using Vlocity Build."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "omnistudio-dependencies-analyze", "description": "Cross-cutting OmniStudio analysis skill for namespace detection, dependency visualization, and impact analysis across OmniScripts, FlexCards, Integration Procedures, and Data Mappers."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "omnistudio-epc-catalog-generate", "description": "Salesforce Industries CME EPC product-modeling skill for Product2-based catalog creation. Use when creating EPC products, configuring product attributes, building offer bundles with Product Child Items, or reviewing EPC DataPack JSON metadata for product catalog changes."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "omnistudio-flexcard-generate", "description": "OmniStudio FlexCard creation and validation with 130-point scoring. Use when building at-a-glance UI cards, configuring data source bindings to Integration Procedures, or reviewing existing FlexCard definitions for accessibility and performance."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "omnistudio-integration-procedure-generate", "description": "OmniStudio Integration Procedure creation and validation with 110-point scoring. Use this skill when building server-side process orchestrations that combine Data Mapper actions, Apex Remote Actions, HTTP callouts, and conditional logic."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "omnistudio-omniscript-generate", "description": "OmniStudio OmniScript creation and validation with 120-point scoring. Use when building guided digital experiences, multi-step forms, or interactive processes that orchestrate Integration Procedures and Data Mappers."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-agentexchange-partner-offers-configure", "description": "Enable or disable the org preference that controls whether a Salesforce org can receive partner offers from the Transactable Marketplace. Use this skill when the user wants to turn partner offer reception on or off for an org."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-agentsetup-categories-fetch", "description": "Fetch agentic setup prompt categories from a connected Salesforce org using the Connect API. Use this skill to call GET /agenticsetup/categories and return the list of prompt categories, optionally with their nested prompts."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-apex-generate", "description": "Primary Apex authoring skill for class generation, refactoring, and review. ALWAYS ACTIVATE when the user mentions Apex, .cls, triggers, or asks to create/refactor a class (service, selector, domain, batch, queueable, schedulable, invocable, DTO, utility, interface, abstract, exception, REST resource). Use this skill for requests involving SObject CRUD, mapping collections, fetching related records, scheduled jobs, batch jobs, trigger design, @AuraEnabled controllers, @RestResource endpoints, custom REST APIs, or code review of existing Apex."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-apex-logs-debug", "description": "Salesforce debug log analysis and troubleshooting with 100-point scoring."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-apex-test-generate", "description": "Generate and validate Apex test classes with TestDataFactory patterns, bulk testing (251+ records), mocking strategies, assertion best practices, and disciplined test-fix loops. Use this skill when creating new Apex test classes, improving test coverage, debugging and fixing failing Apex tests, running test execution and coverage analysis, or implementing testing patterns for triggers, services, controllers, batch jobs, queueables, and integrations. Triggers on *Test.cls, *_Test.cls files, sf apex run test workflows, coverage reports, test-fix loops. Do NOT trigger for production Apex code (use platform-apex-generate) or Jest/LWC tests."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-apex-test-run", "description": "Apex test execution, coverage analysis, and test-fix loops with 120-point scoring. Use when the user needs to run Apex tests, check code coverage, fix failing tests, or work with *Test.cls / *_Test.cls files."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-custom-application-generate", "description": "Use this skill when users need to create or configure tab-based Salesforce Custom Applications with navigation, branding, and action overrides. Trigger when users mention custom apps, application metadata, app navigation, or organizing tabs into applications. Use when users want to create app containers for tabs and pages. Do NOT use when the goal is hosting a React UI bundle in the App Launcher — use experience-ui-bundle-custom-app-generate for that case."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-custom-field-generate", "description": "Use this skill when users need to create, generate, or validate Salesforce Custom Field metadata. Trigger when users mention custom fields, field types, Roll-up Summary fields, Master-Detail relationships, Lookup relationships, formula fields, picklists, dependent (controlling) picklists, referencing a value set from a field, or scoping/limiting picklist values for a specific record type. Also use when users encounter field deployment errors, especially around Roll-up Summary format, Master-Detail constraints, formula issues, or a record type that won't deploy without a business process. Use this skill for custom field metadata work, field generation, and field troubleshooting. DO NOT"}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-custom-lightning-type-generate", "description": "Use this skill when users need to create Custom Lightning Types (CLTs) for Einstein Agent actions or structured input/output schemas. Trigger when users mention CLT, Custom Lightning Types, Custom Lightning Types (CLTs) with widget/mosaic/fragment rendition/renderer, JSON schemas for agents, type definitions, lightning__objectType, or editor/renderer configurations. When widget renditions are requested, you MUST first read the widget-rendition.md reference file in this skill's references/ directory and follow its complete workflow. This is complex - always use this skill for CLT work."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-custom-object-generate", "description": "Use this skill when users need to create, generate, or validate Salesforce Custom Object metadata. Trigger when users mention custom objects, creating objects, object metadata, .object files, sharing models, name fields, or validation rules on objects. Also use when users say things like \"create a custom object\", \"generate object metadata\", \"set up an object for...\", or when they're troubleshooting object deployment errors especially around sharing models and Master-Detail relationships. Always use this skill for any custom object metadata work, including enriching and keeping the object's description current whenever its fields or validation rules change. Do NOT use this skill for non-Custom-Object metadata (Apex, Flows, LWC, Permission Sets, Custom Metadata Types) or for standard Salesforce objects."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-custom-report-type-generate", "description": "Use this skill when users need to create, generate, or validate Salesforce Custom Report Type metadata. Trigger when users mention custom report types, report types, CRTs, reporting frameworks, cross-object reports, report builder data sources, or ask to expose fields for reporting across related objects. Also use when users mention primary and related objects for reports, inner vs outer joins in reports, report type categories, or encounter deployment errors for .reportType-meta.xml files. Do NOT trigger for: running, editing, or filtering existing reports; creating report folders, dashboards, or list views; or general reporting questions that don't involve authoring a .reportType-meta.xml file."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-custom-tab-generate", "description": "Use this skill when users need to create or configure Salesforce Custom Tabs. Trigger when users mention tabs, navigation tabs, object tabs, web tabs, Visualforce tabs, Lightning component tabs, app page tabs, or tab configuration. Also use when users want to add navigation to custom objects, create tabs for external content, or set up Lightning page tabs. Always use this skill for any custom tab work."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-data-manage", "description": "Salesforce data operations with 130-point scoring. Use this skill to create, update, delete, bulk import/export, generate test data, and clean up org records using sf CLI and anonymous Apex."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-dataspace-access-configure", "description": "Use this skill to configure Salesforce Data Cloud DataSpace access for permission sets. Grants dataspace-level access via MDAPI PermissionSet XML with dataspaceScopes elements, and optionally grants object-level access to specific DMO, DLO, or CIO objects via the Object Access Grants Connect API."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-docs-get", "description": "Official Salesforce documentation retrieval skill. Use when you need authoritative Salesforce docs from developer.salesforce.com, help.salesforce.com, architect.salesforce.com, admin.salesforce.com, or lightningdesignsystem.com, especially when pages are JS-heavy, shell-rendered, or hard to extract with naive fetching. Use to ground answers in official Salesforce sources instead of third-party blogs or summaries."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-encryption-configure", "description": "Configure Salesforce Shield Platform Encryption — generate deployable encryption settings and encrypted-field metadata, and answer key-model and lifecycle questions."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-flexipage-generate", "description": "Use this skill when users need to create, generate, modify, or validate Salesforce Lightning pages (FlexiPages). Trigger when users mention RecordPage, AppPage, HomePage, Lightning pages, page layouts, adding components to pages, or page customization. Also use when users say things like 'create a Lightning page', 'add a component to a page', 'customize the record page', 'generate a FlexiPage', or when they're working with FlexiPage XML files and need help with components, regions, or deployment errors. Always use this skill for any FlexiPage-related work, even if they just mention 'page' in the context of Salesforce. DO NOT"}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-lightning-app-coordinate", "description": "Build complete Salesforce Lightning Experience applications from natural language descriptions. Use this skill when a user requests a \"complete app\", \"Lightning app\", \"business solution\", \"management system\", or describes a scenario requiring multiple interconnected Salesforce components (objects, fields, pages, tabs, security). Orchestrates all required metadata types in proper dependency order to produce a deployable application."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-list-view-generate", "description": "Use this skill when users need to create, generate, or validate Salesforce List View metadata. Trigger when users mention list views, filtered record lists, creating views, setting up record columns, filtering records by criteria, or ask about list view visibility. Also use when users say things like \"I need a view that shows...\", \"filter records by...\", \"create a list view for...\", or when they're working with ListView XML files and need validation or troubleshooting."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-metadata-api-context-get", "description": "REQUIRED companion for Salesforce metadata generation — load this schema/API-context skill in the SAME turn as ANY metadata generation skill; if you load a generator, you ALSO load this. Use it whenever you create, generate, add, edit, or author metadata or a *-meta.xml file: custom object, custom field, formula field, picklist, lookup, master-detail, validation rule, permission set, profile, custom tab, lightning record page, flexipage, list view, custom application, flow, layout, record type, sharing rules, report, and 604 Metadata API types. It provides the authoritative schema, fields, field properties, required flags, allowed enum values, and XML structure so generated *-meta.xml deploys cleanly — skipping it causes hallucinated element names and deploy failures. Trigger on *-meta.xml, metadata schema, api context, 'Salesforce metadata', or 'sfdx project'. DO NOT use for SOQL, DML, runtime sObject access, or Tooling API records."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-metadata-deploy", "description": "Salesforce DevOps automation using sf CLI v2."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-metadata-retrieve", "description": "ALWAYS USE THIS SKILL to retrieve metadata from an org to your local project using the sf project retrieve start command. Supports multiple retrieval modes: retrieve all remote changes, retrieve by source directory, retrieve by metadata type with wildcards, retrieve by manifest (package.xml), or retrieve by package name. Use when the user asks to retrieve, pull, sync, or download metadata, Apex classes, custom objects, or org changes. Supports source format (default) or metadata format (ZIP). DO NOT"}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-models-api-configure", "description": "Configure (or troubleshoot) an AI coding agent or CLI to route through the Salesforce Models API using a signed OrgJWT. Use this skill when pointing an agent at the Salesforce model endpoint (api.salesforce.com/ai/gpt/v1), setting up OrgJWT / Bedrock-mode auth, wiring the agent's settings, API-key helper, and credentials file for the Salesforce endpoint, or fixing Models API 401 / 404 / \"model not available\" errors. DO NOT"}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-permission-set-generate", "description": "Generates correct, deployable Salesforce permission set metadata (PermissionSet XML) with object, field, user, and app permissions. Use this skill when creating or editing permission set metadata, object permissions, field-level security (FLS), tab visibility, or deploying permission sets."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-policy-rule-generate", "description": "Use this skill when authoring PolicyRuleDefinition and PolicyRuleDefinitionSet metadata XML for the Salesforce Enforce-O-Matic MDAPI (Data Cloud governance policies), or when editing *.policyRuleDefinition / *.policyRuleDefinitionSet files. Covers the category decision tree, full schema for all policy variants (ACCESS, GOVERNANCE, RECORD, TRANSFORM), UI-compatibility rules for the Data Governance Policy Builder, and validation guardrails. Do NOT use this skill for UserAccessPolicy, AccessPolicy, SharingRules, PermissionSet, or any non-Enforce-O-Matic access-control metadata — those have their own types and live outside the PolicyRuleDefinition schema."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-sharing-rules-generate", "description": "Use this skill when users need to create, generate, or modify Salesforce Sharing Rules metadata."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-soql-query", "description": "SOQL query generation, optimization, and analysis with 100-point scoring. Use this skill when the user needs SOQL/SOSL authoring or optimization: natural-language-to-query generation, relationship queries, aggregates, query-plan analysis, and performance or safety improvements for Salesforce queries."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-tracing-agentforce-configure", "description": "Generate AgentforcePlatformTracingSettings metadata to enable or disable Agentforce agent execution trace spans flowing to Data Cloud. Use this skill for any AgentforcePlatformTracingSettings metadata work."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-tracing-configure", "description": "Generate EventSettings metadata to enable or disable Platform Tracing (TraceSpanEvent publishing) in Event Monitoring. Use this skill for any EventSettings enablePlatformTracing metadata work."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-trust-archive-manage", "description": "ALWAYS USE THIS SKILL for anything involving Salesforce Archive (also called Trusted Services Archive) — search, view, unarchive, analyze, mask, and erase (RTBF) archived records via the Archive Connect API, and reading archive job status from the ArchiveActivity object."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-validation-rule-generate", "description": "Use this skill when users need to create, modify, or validate Salesforce Validation Rules. Trigger when users mention validation rules, field validation, data quality rules, formula validation, error messages, or validation logic. Also use when users encounter validation errors, need to update formulas, or want to enforce business rules at the data layer. Always use this skill for any validation rule work."}, {"category": "salesforce", "categoryLabel": "Salesforce", "name": "platform-value-set-generate", "description": "Use this skill when users need to create, generate, or validate a Salesforce global value set or customize a standard value set. Trigger when users mention a global value set, GlobalValueSet, standard value set, StandardValueSet, a reusable picklist, a picklist value set shared across fields, or customizing standard picklists like Industry, Lead Source, or Opportunity Stage. Also use when users hit deployment errors adding values to a standard picklist, referencing a value set from a custom field, or working with .globalValueSet-meta.xml or .standardValueSet-meta.xml files. DO NOT"}, {"category": "dayforce", "categoryLabel": "Dayforce", "name": "dayforce-payroll-report-generate", "description": "Build and export Dayforce (Ceridian) payroll and reporting queries — using Dayforce's Reporting/Analytics endpoints, scheduled report exports, and effective-dated payroll data (earnings, deductions, taxes) for reconciliation."}, {"category": "dayforce", "categoryLabel": "Dayforce", "name": "dayforce-rest-api-integrate", "description": "Integrate with the Dayforce (Ceridian) RESTful Web Services API for HCM, payroll, and timekeeping data — OAuth2 client-credentials auth, tenant-scoped base URLs, core resource endpoints (Employees, PayGroups, WorkAssignments, Timesheets, Punches), cursor-based pagination, and rate-limit handling."}, {"category": "workday", "categoryLabel": "Workday", "name": "workday-eib-build", "description": "Build Workday EIB (Enterprise Interface Builder) inbound and outbound integrations — deciding when to use EIB versus REST/RaaS/Studio, structuring inbound data via XML/CSV/Excel and transformation, sequencing load order and validation, and diagnosing common failure modes."}, {"category": "workday", "categoryLabel": "Workday", "name": "workday-rest-integrate", "description": "Integrate with Workday's REST API and Report-as-a-Service (RaaS) for HCM and Financials data — OAuth2/ISU (Integration System User) auth, tenant URL structure, core resource endpoints (Workers, Positions, Journals), and Workday-specific quirks like WID vs Reference ID and asynchronous business process transactions."}, {"category": "excel", "categoryLabel": "Excel", "name": "excel-dashboard-build", "description": "Builds interactive Excel dashboards, covering data-model structuring with PivotTables, slicer/timeline-driven interactivity, chart-type selection, and performance tuning for large workbooks."}, {"category": "excel", "categoryLabel": "Excel", "name": "excel-formula-generate", "description": "Generates and debugs complex Excel formulas, with emphasis on modern dynamic-array functions (XLOOKUP, FILTER, SORT, UNIQUE, LET, LAMBDA) and systematic techniques for tracing errors in deeply nested expressions. Also advises when a formula is the right tool versus reaching for VBA or Power Query."}, {"category": "excel", "categoryLabel": "Excel", "name": "excel-power-query-build", "description": "Builds Power Query (M language) transformations for Excel data models, covering query folding and its performance implications, common reshaping steps like unpivot/merge/append/custom columns, and connecting to refreshable external sources such as CSV, SQL databases, and web APIs."}, {"category": "excel", "categoryLabel": "Excel", "name": "excel-vba-automate", "description": "Writes and reviews VBA macros for Excel automation, covering the Workbook/Worksheet/Range object model, event-driven procedures like Workbook_Open and Worksheet_Change, and robust error handling with On Error GoTo. Flags common performance and reliability pitfalls in macro code."}, {"category": "google-sheets", "categoryLabel": "Google Sheets", "name": "sheets-apps-script-generate", "description": "Writes Google Apps Script (V8 runtime) to automate Google Sheets — custom functions invoked as formulas, simple and installable triggers, SpreadsheetApp object-model manipulation, and calls to external APIs via UrlFetchApp."}, {"category": "jira", "categoryLabel": "Jira", "name": "jira-bulk-issue-manage", "description": "Bulk creates, updates, and migrates Jira issues via the REST API — selecting issue sets with JQL, using the bulk create/update endpoints, mapping custom field IDs that differ per instance, and handling rate limits/backoff for large migrations."}, {"category": "jira", "categoryLabel": "Jira", "name": "jira-workflow-configure", "description": "Configures Jira workflows, statuses, transitions, and automation rules — workflow scheme structure, transition conditions/validators/post-functions, and trigger-condition-action automation for cases like auto-assignment or auto-transitioning issues."}, {"category": "servicenow", "categoryLabel": "ServiceNow", "name": "servicenow-flow-generate", "description": "Guides the design and build of ServiceNow Flow Designer flows and subflows, covering trigger selection, actions vs. subflows, data pill wiring between steps, and when to choose Flow Designer over the legacy Workflow Editor or a custom script."}, {"category": "servicenow", "categoryLabel": "ServiceNow", "name": "servicenow-script-generate", "description": "Guides writing ServiceNow server-side and client-side scripts — Script Includes, Business Rules, Client Scripts, and the GlideRecord/GlideAjax patterns that connect them — with emphasis on execution order and common runtime pitfalls."}, {"category": "netsuite", "categoryLabel": "NetSuite", "name": "netsuite-suitescript-generate", "description": "Guides writing NetSuite SuiteScript 2.x scripts for automation and customization, covering script-type selection, the core N/record and N/search modules, and how to design within governance/usage-unit limits."}, {"category": "sap", "categoryLabel": "SAP", "name": "sap-odata-integrate", "description": "Guides integrating with SAP OData services across classic Gateway/OData V2 and SAP S/4HANA Cloud OData V4, covering auth patterns (basic auth plus CSRF token fetch, and OAuth2), metadata-driven entity discovery, and batch request construction for bulk operations."}, {"category": "adp", "categoryLabel": "ADP", "name": "adp-workforce-now-integrate", "description": "Guides integration with ADP Workforce Now via ADP APIs — covering the OAuth2 client-credentials + mutual TLS (mTLS) authentication pattern ADP mandates, the ADP Marketplace/API Central app registration and certificate provisioning flow, common HR/payroll resource endpoints (workers, payroll-instructions, events), and choosing event-driven notification subscriptions over polling."}, {"category": "slack", "categoryLabel": "Slack", "name": "slack-workflow-build", "description": "Guides building Slack automations — the Bolt framework's event subscription, slash command, and interactivity/shortcut handlers; when to reach for no-code Workflow Builder versus a custom app/bot; and how to pick the right OAuth scopes and token type (bot vs user token) for a given feature."}, {"category": "power-platform", "categoryLabel": "Power Platform", "name": "power-automate-flow-build", "description": "Guides building Power Automate cloud flows — choosing between automated, instant, and scheduled trigger types; understanding connector licensing tiers (standard vs. premium/custom) and their cost implications; applying core control patterns (Condition, Apply to each, Do until); and wiring robust error handling with \"configure run after\"."}, {"category": "power-platform", "categoryLabel": "Power Platform", "name": "power-bi-report-generate", "description": "Guides building Power BI reports and data models — star schema modeling fundamentals, when to write a DAX measure versus a calculated column, relationship cardinality and cross-filter direction choices, and performance considerations like import vs. DirectQuery and avoiding bidirectional filters on large fact tables."}, {"category": "zendesk", "categoryLabel": "Zendesk", "name": "zendesk-api-integrate", "description": "Integrates with the Zendesk API — authentication (API token vs OAuth), core resources (Tickets, Users, Organizations), building Triggers/Automations for ticket routing, and the incremental export endpoint pattern for syncing ticket data to external systems."}, {"category": "consulting", "categoryLabel": "Consulting", "name": "change-order-draft", "description": "Drafts a change order when scope shifts mid-engagement — documenting the delta from the original SOW, framing pricing/timeline impact, and getting a change order out fast instead of letting unscoped work accumulate silently."}, {"category": "consulting", "categoryLabel": "Consulting", "name": "client-context-switch", "description": "Reconstructs a compact briefing for a specific client engagement when a consultant juggling multiple concurrent clients switches back to it, pulling together the last status sent, open action items, open risks, recent decisions, and the next touchpoint."}, {"category": "consulting", "categoryLabel": "Consulting", "name": "discovery-call-prep", "description": "Prepares a structured discovery call agenda and question list for a new client engagement, covering current-state process, pain points, technical constraints, stakeholders, success criteria, and timeline/budget, sequenced to build rapport before probing sensitive topics."}, {"category": "consulting", "categoryLabel": "Consulting", "name": "engagement-retro-facilitate", "description": "Runs a structured end-of-engagement retrospective and converts it into a written retro document with concrete, owned action items rather than a list of vague sentiments. Covers a question framework, techniques for surfacing honest input from a client-facing team critiquing its own work, and the translation from raw retro notes to next-engagement changes."}, {"category": "consulting", "categoryLabel": "Consulting", "name": "handoff-doc-generate", "description": "Produces a project handoff/knowledge-transfer document when a consultant rolls off an engagement or transitions it to a new owner, covering access and credentials, stakeholder contacts, in-flight work state, known issues, and tribal knowledge that exists nowhere else."}, {"category": "consulting", "categoryLabel": "Consulting", "name": "meeting-notes-action-extract", "description": "Converts raw meeting notes, call transcripts, or scribbled minutes into a structured record of decisions and action items, each with a single named owner and a due date."}, {"category": "consulting", "categoryLabel": "Consulting", "name": "proposal-scope-estimate", "description": "Turns discovery or requirements notes into a scoped proposal with effort estimates — breaking work into estimable units, choosing between t-shirt sizing and detailed hour estimates, building in contingency for unknowns, and catching common estimation traps."}, {"category": "consulting", "categoryLabel": "Consulting", "name": "risk-register-track", "description": "Maintains a project risk register throughout an engagement — adding new risks with consistent likelihood/impact sizing, and reviewing existing entries to catch ones that have gone stale or were never assigned an owner."}, {"category": "consulting", "categoryLabel": "Consulting", "name": "sow-draft-generate", "description": "Drafts a Statement of Work from discovery call notes, a requirements doc, or a proposal — structuring scope, deliverables, timeline, assumptions, and exclusions, and translating vague client language into specific, measurable deliverables."}, {"category": "consulting", "categoryLabel": "Consulting", "name": "status-report-generate", "description": "Generates a client-facing status report from raw internal activity — ticket/task system exports, git commit logs, standup notes — structured around outcomes and risks rather than a list of completed tickets."}, {"category": "agentic-graphs", "categoryLabel": "Agentic Graphs", "name": "agent-graph-design", "description": "Guidance for choosing and shaping a graph-based architecture for an agentic Claude system — deciding when nodes/edges/explicit state beat a simple tool-use loop or a single long-running agent, how to decompose work into nodes, and where to place deterministic code versus LLM judgment."}, {"category": "agentic-graphs", "categoryLabel": "Agentic Graphs", "name": "conditional-routing-design", "description": "Guidance for building router/branching nodes in an agent graph — choosing between LLM-classifier and deterministic rule-based routing, keeping routing nodes free of task work, handling low-confidence routing decisions, and preventing unhandled cases from silently falling into the wrong branch."}, {"category": "agentic-graphs", "categoryLabel": "Agentic Graphs", "name": "graph-checkpoint-resume", "description": "Designs persistence and checkpointing for long-running graph-based agent loops so they survive crashes, restarts, and redeploys without corrupting external state or losing progress. Covers what a checkpoint must capture, frequency tradeoffs, idempotency for side-effecting nodes on resume, and handling graph-definition drift between checkpoint write and resume."}, {"category": "agentic-graphs", "categoryLabel": "Agentic Graphs", "name": "graph-state-schema-design", "description": "Guidance for designing the shared state object that flows through nodes in an agent graph — what to persist versus recompute, preventing unbounded state growth over long-running loops, designing merge/reducer behavior for parallel branches, and versioning schemas so checkpoints survive graph evolution."}, {"category": "agentic-graphs", "categoryLabel": "Agentic Graphs", "name": "human-in-the-loop-interrupt", "description": "Designs approval/interrupt checkpoints in an agent graph that pause before risky or irreversible actions and route to a human decision. Covers which actions actually warrant a gate, how to shape the interrupt payload for fast human decisions, timeout/escalation behavior, and preventing interrupt fatigue that trains approvers to rubber-stamp."}, {"category": "agentic-graphs", "categoryLabel": "Agentic Graphs", "name": "loop-termination-guard", "description": "Guidance for designing robust termination conditions for cyclic agent graphs — avoiding both premature cutoff from naive iteration caps and runaway loops with no cap, detecting non-convergence (repeated failed actions, oscillation) versus genuine progress, and layering multiple independent guards instead of relying on a single stopping rule."}, {"category": "agentic-graphs", "categoryLabel": "Agentic Graphs", "name": "multi-agent-supervisor-orchestrate", "description": "Designs supervisor/worker graph topologies where a coordinating Claude instance dispatches work to specialized subagents and integrates their results. Covers decomposition criteria, the supervisor's dispatch-collect-decide loop, context digesting to prevent state bloat, and failure isolation between workers."}, {"category": "agentic-graphs", "categoryLabel": "Agentic Graphs", "name": "self-correction-loop-design", "description": "Designs generate-critique-revise reflection loops as separate graph nodes with distinct roles, concrete pass/fail criteria, and bounded iteration. Covers why same-call self-checking underperforms a separated critique pass, how to write criteria that actually catch errors instead of eliciting vague approval, and when additional revision rounds stop helping."}];
+
+  const CAT_LABELS = [["salesforce", "Salesforce"], ["dayforce", "Dayforce"], ["workday", "Workday"], ["excel", "Excel"], ["google-sheets", "Google Sheets"], ["jira", "Jira"], ["servicenow", "ServiceNow"], ["netsuite", "NetSuite"], ["sap", "SAP"], ["adp", "ADP"], ["slack", "Slack"], ["power-platform", "Power Platform"], ["zendesk", "Zendesk"], ["consulting", "Consulting"], ["agentic-graphs", "Agentic Graphs"]];
+
+  const chipsEl = document.getElementById('chips');
+  const mainEl = document.getElementById('main');
+  const searchEl = document.getElementById('search');
+  const countEl = document.getElementById('resultCount');
+
+  let activeCats = new Set();
+
+  function catCounts() {
+    const counts = {};
+    DATA.forEach(d => counts[d.category] = (counts[d.category]||0)+1);
+    return counts;
+  }
+
+  function renderChips() {
+    const counts = catCounts();
+    chipsEl.innerHTML = '';
+    CAT_LABELS.forEach(([cat, label]) => {
+      if (!counts[cat]) return;
+      const chip = document.createElement('button');
+      chip.className = 'chip';
+      chip.type = 'button';
+      chip.setAttribute('aria-pressed', activeCats.has(cat) ? 'true' : 'false');
+      chip.innerHTML = label + ' <span class="n">' + counts[cat] + '</span>';
+      chip.addEventListener('click', () => {
+        if (activeCats.has(cat)) activeCats.delete(cat);
+        else activeCats.add(cat);
+        renderChips();
+        renderList();
+      });
+      chipsEl.appendChild(chip);
+    });
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function renderList() {
+    const q = searchEl.value.trim().toLowerCase();
+    const filtered = DATA.filter(d => {
+      if (activeCats.size && !activeCats.has(d.category)) return false;
+      if (!q) return true;
+      return d.name.toLowerCase().includes(q) ||
+             d.description.toLowerCase().includes(q) ||
+             d.categoryLabel.toLowerCase().includes(q);
+    });
+
+    countEl.textContent = 'Showing ' + filtered.length + ' of ' + DATA.length;
+
+    if (!filtered.length) {
+      mainEl.innerHTML = '<div class="empty">No skills match \u201c' + escapeHtml(searchEl.value) + '\u201d.</div>';
+      return;
+    }
+
+    const byCat = {};
+    filtered.forEach(d => { (byCat[d.category] = byCat[d.category] || []).push(d); });
+
+    let html = '';
+    CAT_LABELS.forEach(([cat, label]) => {
+      const items = byCat[cat];
+      if (!items || !items.length) return;
+      html += '<section class="category-section">';
+      html += '<div class="category-heading"><h2>' + label + '</h2><span class="n">' + items.length + '</span></div>';
+      html += '<div class="rows">';
+      items.forEach(d => {
+        const url = 'https://github.com/VurtuoLabs/skills/blob/main/' + d.category + '/' + d.name + '/SKILL.md';
+        html += '<a class="row" href="' + url + '" target="_blank" rel="noopener">' +
+                  '<span class="skill-name">' + escapeHtml(d.name) + '</span>' +
+                  '<span class="skill-desc">' + escapeHtml(d.description) + '</span>' +
+                  '<span class="go">&rarr;</span>' +
+                '</a>';
+      });
+      html += '</div></section>';
+    });
+    mainEl.innerHTML = html;
+  }
+
+  searchEl.addEventListener('input', renderList);
+
+  document.getElementById('copyInstall').addEventListener('click', (e) => {
+    navigator.clipboard.writeText('npx skills add VurtuoLabs/skills').then(() => {
+      const btn = e.currentTarget;
+      const orig = btn.textContent;
+      btn.textContent = 'Copied';
+      btn.dataset.copied = 'true';
+      setTimeout(() => { btn.textContent = orig; btn.dataset.copied = 'false'; }, 1600);
+    });
+  });
+
+  renderChips();
+  renderList();
+</script>
