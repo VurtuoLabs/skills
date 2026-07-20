@@ -1,6 +1,6 @@
 ---
 name: zendesk-api-integrate
-description: Integrates with the Zendesk API — authentication (API token vs OAuth), core resources (Tickets, Users, Organizations), building Triggers/Automations for ticket routing, and the incremental export endpoint pattern for syncing ticket data to external systems. TRIGGER when: the user is calling the Zendesk REST API, choosing an auth method for a Zendesk integration, designing ticket-routing logic (Triggers vs. Automations), or building a sync job that pulls tickets/users incrementally. DO NOT TRIGGER when: the task is purely inside the Zendesk Guide/Help Center content editor with no API involved, or is unrelated CRM ticketing on a different platform.
+description: "Integrates with the Zendesk API — authentication (API token vs OAuth), core resources (Tickets, Users, Organizations), building Triggers/Automations for ticket routing, and the incremental export endpoint pattern for syncing ticket data to external systems. TRIGGER when: the user is calling the Zendesk REST API, choosing an auth method for a Zendesk integration, designing ticket-routing logic (Triggers vs. Automations), or building a sync job that pulls tickets/users incrementally. DO NOT TRIGGER when: the task is purely inside the Zendesk Guide/Help Center content editor with no API involved, or is unrelated CRM ticketing on a different platform."
 triggers:
   - "zendesk api"
   - "zendesk trigger vs automation"

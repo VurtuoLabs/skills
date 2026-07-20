@@ -1,6 +1,6 @@
 ---
 name: excel-dashboard-build
-description: Builds interactive Excel dashboards, covering data-model structuring with PivotTables, slicer/timeline-driven interactivity, chart-type selection, and performance tuning for large workbooks. TRIGGER when: the user asks to design or build an Excel dashboard, report, or interactive summary sheet; the task involves PivotTables/PivotCharts, slicers, or timelines; the user needs guidance on which chart type fits their data; a dashboard workbook is slow to open, recalculate, or filter. DO NOT TRIGGER when: the request is purely about writing individual formulas, VBA macros, or Power Query steps with no dashboard layout, chart, or PivotTable component involved.
+description: "Builds interactive Excel dashboards, covering data-model structuring with PivotTables, slicer/timeline-driven interactivity, chart-type selection, and performance tuning for large workbooks. TRIGGER when: the user asks to design or build an Excel dashboard, report, or interactive summary sheet; the task involves PivotTables/PivotCharts, slicers, or timelines; the user needs guidance on which chart type fits their data; a dashboard workbook is slow to open, recalculate, or filter. DO NOT TRIGGER when: the request is purely about writing individual formulas, VBA macros, or Power Query steps with no dashboard layout, chart, or PivotTable component involved."
 triggers:
   - "excel dashboard"
   - "pivottable slicer timeline"

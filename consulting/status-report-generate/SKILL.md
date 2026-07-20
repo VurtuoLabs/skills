@@ -1,6 +1,6 @@
 ---
 name: status-report-generate
-description: Generates a client-facing status report from raw internal activity — ticket/task system exports, git commit logs, standup notes — structured around outcomes and risks rather than a list of completed tickets. TRIGGER when: the user asks for a weekly/biweekly client status update, needs to turn sprint or standup notes into a client-readable summary, or has a pile of Jira/git activity to compress into a report. DO NOT TRIGGER when: the ask is to extract action items from a single meeting (use meeting-notes-action-extract), to log or update project risks in a register (use risk-register-track), or to write an internal engineering changelog with no client audience.
+description: "Generates a client-facing status report from raw internal activity — ticket/task system exports, git commit logs, standup notes — structured around outcomes and risks rather than a list of completed tickets. TRIGGER when: the user asks for a weekly/biweekly client status update, needs to turn sprint or standup notes into a client-readable summary, or has a pile of Jira/git activity to compress into a report. DO NOT TRIGGER when: the ask is to extract action items from a single meeting (use meeting-notes-action-extract), to log or update project risks in a register (use risk-register-track), or to write an internal engineering changelog with no client audience."
 triggers:
   - "write this week's status report"
   - "turn these tickets into a client update"

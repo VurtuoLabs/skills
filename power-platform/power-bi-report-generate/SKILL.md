@@ -1,6 +1,6 @@
 ---
 name: power-bi-report-generate
-description: Guides building Power BI reports and data models — star schema modeling fundamentals, when to write a DAX measure versus a calculated column, relationship cardinality and cross-filter direction choices, and performance considerations like import vs. DirectQuery and avoiding bidirectional filters on large fact tables. TRIGGER when: a user is designing a Power BI data model, writing DAX, setting up table relationships, choosing storage mode, or diagnosing slow report performance. DO NOT TRIGGER when: the task is pure Power BI Desktop UI styling/visuals with no modeling or DAX involved, or the user is working in Excel Power Pivot/Analysis Services outside a Power BI report context.
+description: "Guides building Power BI reports and data models — star schema modeling fundamentals, when to write a DAX measure versus a calculated column, relationship cardinality and cross-filter direction choices, and performance considerations like import vs. DirectQuery and avoiding bidirectional filters on large fact tables. TRIGGER when: a user is designing a Power BI data model, writing DAX, setting up table relationships, choosing storage mode, or diagnosing slow report performance. DO NOT TRIGGER when: the task is pure Power BI Desktop UI styling/visuals with no modeling or DAX involved, or the user is working in Excel Power Pivot/Analysis Services outside a Power BI report context."
 triggers:
   - "Power BI star schema"
   - "DAX measure vs calculated column"

@@ -1,6 +1,6 @@
 ---
 name: servicenow-script-generate
-description: Guides writing ServiceNow server-side and client-side scripts — Script Includes, Business Rules, Client Scripts, and the GlideRecord/GlideAjax patterns that connect them — with emphasis on execution order and common runtime pitfalls. TRIGGER when: a user asks to write or debug a Script Include, Business Rule, Client Script, or GlideAjax call, or needs server logic invoked from client code in ServiceNow. DO NOT TRIGGER when: the request is purely declarative (Flow Designer flow, UI Policy without scripting, ATF test authoring) or is about a non-ServiceNow scripting platform.
+description: "Guides writing ServiceNow server-side and client-side scripts — Script Includes, Business Rules, Client Scripts, and the GlideRecord/GlideAjax patterns that connect them — with emphasis on execution order and common runtime pitfalls. TRIGGER when: a user asks to write or debug a Script Include, Business Rule, Client Script, or GlideAjax call, or needs server logic invoked from client code in ServiceNow. DO NOT TRIGGER when: the request is purely declarative (Flow Designer flow, UI Policy without scripting, ATF test authoring) or is about a non-ServiceNow scripting platform."
 triggers:
   - "script include"
   - "business rule"

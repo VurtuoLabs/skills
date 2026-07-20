@@ -1,6 +1,6 @@
 ---
 name: graph-state-schema-design
-description: Guidance for designing the shared state object that flows through nodes in an agent graph — what to persist versus recompute, preventing unbounded state growth over long-running loops, designing merge/reducer behavior for parallel branches, and versioning schemas so checkpoints survive graph evolution. TRIGGER when: defining or refactoring the state schema for a multi-node agent graph, diagnosing quality or cost degradation over long agent runs, adding parallel/fan-out branches that write to shared state, or migrating a graph's state shape while old checkpoints exist. DO NOT TRIGGER when: the question is about a single prompt's content or a one-off tool call's input/output shape with no persistence across steps.
+description: "Guidance for designing the shared state object that flows through nodes in an agent graph — what to persist versus recompute, preventing unbounded state growth over long-running loops, designing merge/reducer behavior for parallel branches, and versioning schemas so checkpoints survive graph evolution. TRIGGER when: defining or refactoring the state schema for a multi-node agent graph, diagnosing quality or cost degradation over long agent runs, adding parallel/fan-out branches that write to shared state, or migrating a graph's state shape while old checkpoints exist. DO NOT TRIGGER when: the question is about a single prompt's content or a one-off tool call's input/output shape with no persistence across steps."
 triggers:
   - "agent state schema"
   - "graph state design"

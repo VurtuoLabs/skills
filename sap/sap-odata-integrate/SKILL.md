@@ -1,6 +1,6 @@
 ---
 name: sap-odata-integrate
-description: Guides integrating with SAP OData services across classic Gateway/OData V2 and SAP S/4HANA Cloud OData V4, covering auth patterns (basic auth plus CSRF token fetch, and OAuth2), metadata-driven entity discovery, and batch request construction for bulk operations. TRIGGER when: a user asks to call, consume, or debug an SAP OData service (Gateway/OData V2 or S/4HANA Cloud V4 API), needs a CSRF token for a write operation, or wants to build a $batch request against SAP. DO NOT TRIGGER when: the task is SAP ABAP-side development (writing the OData service itself in SEGW/RAP) with no client integration involved, or is about SAP IDoc/BAPI/RFC integration unrelated to OData.
+description: "Guides integrating with SAP OData services across classic Gateway/OData V2 and SAP S/4HANA Cloud OData V4, covering auth patterns (basic auth plus CSRF token fetch, and OAuth2), metadata-driven entity discovery, and batch request construction for bulk operations. TRIGGER when: a user asks to call, consume, or debug an SAP OData service (Gateway/OData V2 or S/4HANA Cloud V4 API), needs a CSRF token for a write operation, or wants to build a $batch request against SAP. DO NOT TRIGGER when: the task is SAP ABAP-side development (writing the OData service itself in SEGW/RAP) with no client integration involved, or is about SAP IDoc/BAPI/RFC integration unrelated to OData."
 triggers:
   - "sap odata"
   - "csrf token sap"

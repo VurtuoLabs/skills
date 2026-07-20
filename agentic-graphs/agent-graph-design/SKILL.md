@@ -1,6 +1,6 @@
 ---
 name: agent-graph-design
-description: Guidance for choosing and shaping a graph-based architecture for an agentic Claude system — deciding when nodes/edges/explicit state beat a simple tool-use loop or a single long-running agent, how to decompose work into nodes, and where to place deterministic code versus LLM judgment. TRIGGER when: designing a new multi-step agent system, refactoring a tangled single-prompt agent into separable stages, deciding whether a workflow needs a graph/state machine at all, or reviewing a graph architecture for over- or under-decomposition. DO NOT TRIGGER when: the task is writing a single tool call, debugging one node's prompt content, or doing generic LLM prompt-engineering unrelated to control flow.
+description: "Guidance for choosing and shaping a graph-based architecture for an agentic Claude system — deciding when nodes/edges/explicit state beat a simple tool-use loop or a single long-running agent, how to decompose work into nodes, and where to place deterministic code versus LLM judgment. TRIGGER when: designing a new multi-step agent system, refactoring a tangled single-prompt agent into separable stages, deciding whether a workflow needs a graph/state machine at all, or reviewing a graph architecture for over- or under-decomposition. DO NOT TRIGGER when: the task is writing a single tool call, debugging one node's prompt content, or doing generic LLM prompt-engineering unrelated to control flow."
 triggers:
   - "graph architecture"
   - "agent graph design"

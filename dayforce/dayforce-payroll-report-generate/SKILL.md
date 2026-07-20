@@ -1,6 +1,6 @@
 ---
 name: dayforce-payroll-report-generate
-description: Build and export Dayforce (Ceridian) payroll and reporting queries — using Dayforce's Reporting/Analytics endpoints, scheduled report exports, and effective-dated payroll data (earnings, deductions, taxes) for reconciliation. TRIGGER when: user is building a payroll reconciliation report against Dayforce, exporting earnings/deductions/tax data, scheduling a Dayforce report for a downstream system, or debugging why a payroll extract doesn't tie out to Dayforce's payroll register. DO NOT TRIGGER when: the task is general REST integration unrelated to payroll reporting (use dayforce-rest-api-integrate), or the platform is Workday.
+description: "Build and export Dayforce (Ceridian) payroll and reporting queries — using Dayforce's Reporting/Analytics endpoints, scheduled report exports, and effective-dated payroll data (earnings, deductions, taxes) for reconciliation. TRIGGER when: user is building a payroll reconciliation report against Dayforce, exporting earnings/deductions/tax data, scheduling a Dayforce report for a downstream system, or debugging why a payroll extract doesn't tie out to Dayforce's payroll register. DO NOT TRIGGER when: the task is general REST integration unrelated to payroll reporting (use dayforce-rest-api-integrate), or the platform is Workday."
 triggers:
   - "Dayforce payroll report"
   - "Dayforce earnings export"

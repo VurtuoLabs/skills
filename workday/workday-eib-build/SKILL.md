@@ -1,6 +1,6 @@
 ---
 name: workday-eib-build
-description: Build Workday EIB (Enterprise Interface Builder) inbound and outbound integrations — deciding when to use EIB versus REST/RaaS/Studio, structuring inbound data via XML/CSV/Excel and transformation, sequencing load order and validation, and diagnosing common failure modes. TRIGGER when: user is building or debugging a Workday EIB integration, choosing between EIB and other Workday integration tools, structuring a spreadsheet/XML load for Workday, or an inbound EIB load is failing on missing references or stuck approvals. DO NOT TRIGGER when: the task is a REST/RaaS integration with no EIB component (use workday-rest-integrate), or the platform is Dayforce/Ceridian.
+description: "Build Workday EIB (Enterprise Interface Builder) inbound and outbound integrations — deciding when to use EIB versus REST/RaaS/Studio, structuring inbound data via XML/CSV/Excel and transformation, sequencing load order and validation, and diagnosing common failure modes. TRIGGER when: user is building or debugging a Workday EIB integration, choosing between EIB and other Workday integration tools, structuring a spreadsheet/XML load for Workday, or an inbound EIB load is failing on missing references or stuck approvals. DO NOT TRIGGER when: the task is a REST/RaaS integration with no EIB component (use workday-rest-integrate), or the platform is Dayforce/Ceridian."
 triggers:
   - "Workday EIB"
   - "Enterprise Interface Builder"

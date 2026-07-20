@@ -1,6 +1,6 @@
 ---
 name: jira-bulk-issue-manage
-description: Bulk creates, updates, and migrates Jira issues via the REST API — selecting issue sets with JQL, using the bulk create/update endpoints, mapping custom field IDs that differ per instance, and handling rate limits/backoff for large migrations. TRIGGER when: the user needs to create or update hundreds/thousands of Jira issues programmatically, migrate issues between projects or instances, script a JQL-driven bulk edit, or is hitting 429s/timeouts during a large Jira data load. DO NOT TRIGGER when: the task is configuring workflow/transition/automation-rule behavior (use jira-workflow-configure) or a one-off single-issue create/edit through the UI.
+description: "Bulk creates, updates, and migrates Jira issues via the REST API — selecting issue sets with JQL, using the bulk create/update endpoints, mapping custom field IDs that differ per instance, and handling rate limits/backoff for large migrations. TRIGGER when: the user needs to create or update hundreds/thousands of Jira issues programmatically, migrate issues between projects or instances, script a JQL-driven bulk edit, or is hitting 429s/timeouts during a large Jira data load. DO NOT TRIGGER when: the task is configuring workflow/transition/automation-rule behavior (use jira-workflow-configure) or a one-off single-issue create/edit through the UI."
 triggers:
   - "jira bulk create"
   - "jira migration script"

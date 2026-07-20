@@ -1,6 +1,6 @@
 ---
 name: handoff-doc-generate
-description: Produces a project handoff/knowledge-transfer document when a consultant rolls off an engagement or transitions it to a new owner, covering access and credentials, stakeholder contacts, in-flight work state, known issues, and tribal knowledge that exists nowhere else. TRIGGER when: a consultant is rolling off, going on leave, or transferring ownership of an engagement to another team member; a project sponsor requests a transition plan; staffing changes are announced with a defined end date. DO NOT TRIGGER when: the engagement itself is ending entirely with no successor (use engagement-retro-facilitate for that closure), or the request is a routine status update rather than a transfer of ownership.
+description: "Produces a project handoff/knowledge-transfer document when a consultant rolls off an engagement or transitions it to a new owner, covering access and credentials, stakeholder contacts, in-flight work state, known issues, and tribal knowledge that exists nowhere else. TRIGGER when: a consultant is rolling off, going on leave, or transferring ownership of an engagement to another team member; a project sponsor requests a transition plan; staffing changes are announced with a defined end date. DO NOT TRIGGER when: the engagement itself is ending entirely with no successor (use engagement-retro-facilitate for that closure), or the request is a routine status update rather than a transfer of ownership."
 triggers:
   - "rolling off this project"
   - "handoff document"

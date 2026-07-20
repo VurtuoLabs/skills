@@ -1,6 +1,6 @@
 ---
 name: netsuite-suitescript-generate
-description: Guides writing NetSuite SuiteScript 2.x scripts for automation and customization, covering script-type selection, the core N/record and N/search modules, and how to design within governance/usage-unit limits. TRIGGER when: a user asks to write or debug a NetSuite script (User Event, Client, Scheduled, Suitelet, RESTlet, Map/Reduce), hits a SuiteScript governance/usage limit error, or needs to query or mutate NetSuite records programmatically. DO NOT TRIGGER when: the request is about NetSuite SuiteFlow (workflow tool) configuration with no scripting involved, or about SuiteAnalytics/saved search UI only with no script needed.
+description: "Guides writing NetSuite SuiteScript 2.x scripts for automation and customization, covering script-type selection, the core N/record and N/search modules, and how to design within governance/usage-unit limits. TRIGGER when: a user asks to write or debug a NetSuite script (User Event, Client, Scheduled, Suitelet, RESTlet, Map/Reduce), hits a SuiteScript governance/usage limit error, or needs to query or mutate NetSuite records programmatically. DO NOT TRIGGER when: the request is about NetSuite SuiteFlow (workflow tool) configuration with no scripting involved, or about SuiteAnalytics/saved search UI only with no script needed."
 triggers:
   - "suitescript"
   - "netsuite scheduled script"

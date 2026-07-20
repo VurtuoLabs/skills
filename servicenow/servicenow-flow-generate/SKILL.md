@@ -1,6 +1,6 @@
 ---
 name: servicenow-flow-generate
-description: Guides the design and build of ServiceNow Flow Designer flows and subflows, covering trigger selection, actions vs. subflows, data pill wiring between steps, and when to choose Flow Designer over the legacy Workflow Editor or a custom script. TRIGGER when: a user asks to automate a ServiceNow process (approvals, record updates, notifications, integrations) without writing a full script, wants to refactor a Workflow Editor workflow into Flow Designer, or asks how to pass data between flow actions. DO NOT TRIGGER when: the user wants raw server-side scripting (Business Rules, Script Includes) with no flow involved, is asking about UI Policies/Client Scripts, or is working purely in ATF test design.
+description: "Guides the design and build of ServiceNow Flow Designer flows and subflows, covering trigger selection, actions vs. subflows, data pill wiring between steps, and when to choose Flow Designer over the legacy Workflow Editor or a custom script. TRIGGER when: a user asks to automate a ServiceNow process (approvals, record updates, notifications, integrations) without writing a full script, wants to refactor a Workflow Editor workflow into Flow Designer, or asks how to pass data between flow actions. DO NOT TRIGGER when: the user wants raw server-side scripting (Business Rules, Script Includes) with no flow involved, is asking about UI Policies/Client Scripts, or is working purely in ATF test design."
 triggers:
   - "flow designer"
   - "servicenow flow"

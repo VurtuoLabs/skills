@@ -1,6 +1,6 @@
 ---
 name: risk-register-track
-description: Maintains a project risk register throughout an engagement — adding new risks with consistent likelihood/impact sizing, and reviewing existing entries to catch ones that have gone stale or were never assigned an owner. TRIGGER when: the user asks to log a new project risk, update or review a risk register, run a periodic risk review, or asks "what risks are we tracking" or "what's stale in the risk log." DO NOT TRIGGER when: the ask is to extract action items from a meeting (use meeting-notes-action-extract) or to write a client status report (use status-report-generate) — though a status report's risk section may pull from a register this skill maintains.
+description: "Maintains a project risk register throughout an engagement — adding new risks with consistent likelihood/impact sizing, and reviewing existing entries to catch ones that have gone stale or were never assigned an owner. TRIGGER when: the user asks to log a new project risk, update or review a risk register, run a periodic risk review, or asks \"what risks are we tracking\" or \"what's stale in the risk log.\" DO NOT TRIGGER when: the ask is to extract action items from a meeting (use meeting-notes-action-extract) or to write a client status report (use status-report-generate) — though a status report's risk section may pull from a register this skill maintains."
 triggers:
   - "add this to the risk register"
   - "review our risk log"
