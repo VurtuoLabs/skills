@@ -1,0 +1,15 @@
+{
+  "//": "The feature-parity CSV has a fixed schema. No columns.json configuration needed. This file is kept for reference only.",
+
+  "fixed_columns": [
+    "Session_Number",
+    "Turn_Order",
+    "User_Utterance",
+    "Legacy_Agent_Name",
+    "Script_Agent_Bundle",
+    "Target_Org",
+    "Action_Mode"
+  ],
+
+  "//notes": "Session_Number groups rows into multi-turn sessions. Turn_Order determines utterance sequence within a session. All rows in a session must share the same Legacy_Agent_Name, Script_Agent_Bundle, Target_Org, and Action_Mode. Action_Mode is 'use-live-actions' or 'simulate-actions' (used only for the Script agent)."
+}
