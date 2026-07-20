@@ -1,22 +1,29 @@
 # skills
 
-Claude Code skills for application development, Salesforce/Agentforce workflows, and related tooling — each skill lives in its own subfolder.
+Claude Code skills for application development, enterprise systems, and related tooling — organized by platform/domain, one subfolder per area, one skill per folder within it.
 
 ## Structure
 
 ```
 skills/
-├── agent-analyzer/         # original VurtuoLabs skill
-├── platform-apex-generate/ # vendored from forcedotcom/sf-skills
-├── platform-soql-query/    # vendored from forcedotcom/sf-skills
-└── ...
+├── salesforce/         # Salesforce/Agentforce (95 skills — see salesforce/README.md)
+├── dayforce/            # Dayforce (Ceridian) HCM/payroll
+├── workday/              # Workday HCM/Financials
+├── excel/                # Microsoft Excel
+├── google-sheets/        # Google Sheets
+├── jira/                 # Jira
+├── servicenow/           # ServiceNow
+├── netsuite/              # NetSuite
+├── sap/                    # SAP
+├── adp/                     # ADP Workforce Now
+├── slack/                    # Slack
+├── power-platform/            # Power Automate / Power BI
+└── zendesk/                    # Zendesk
 ```
 
 Each skill folder contains:
 - `SKILL.md` (required) — instructions and YAML front matter
-- `scripts/` (optional) — executable scripts
-- `references/` (optional) — extra reference documentation
-- `assets/` (optional) — templates, schemas, lookup data
+- `scripts/`, `references/`, `assets/` (optional) — supporting material
 
 ## Install / usage
 
@@ -27,113 +34,66 @@ Each skill folder contains:
 
 ## Skills
 
-### Original (VurtuoLabs)
+### Salesforce
 
-- **[agent-analyzer](agent-analyzer/SKILL.md)** — validates behavioral parity between a legacy Agentforce agent and its AgentScript migration.
+95 skills (Agentforce, Apex, Flow, LWC, Data Cloud, DevOps, OmniStudio, and more) — one original (`agent-analyzer`), the rest vendored from Salesforce's [forcedotcom/sf-skills](https://github.com/forcedotcom/sf-skills) under Apache-2.0. Full list: [salesforce/README.md](salesforce/README.md).
 
-### Vendored (Salesforce sf-skills)
+### Dayforce
 
-Synced from [forcedotcom/sf-skills](https://github.com/forcedotcom/sf-skills) (Apache License 2.0 — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)). Upstream is the source of truth and evolves frequently.
+- **[dayforce-rest-api-integrate](dayforce/dayforce-rest-api-integrate/SKILL.md)** — Integrate with the Dayforce (Ceridian) RESTful Web Services API for HCM, payroll, and timekeeping data — OAuth2 client-credentials auth, tenant-scoped base URLs, core resource endpoints, cursor-based pagination, and rate-limit handling.
+- **[dayforce-payroll-report-generate](dayforce/dayforce-payroll-report-generate/SKILL.md)** — Build and export Dayforce payroll and reporting queries against effective-dated payroll data for reconciliation.
 
-- **[agentforce-architecture-analyze](agentforce-architecture-analyze/SKILL.md)** — Declared architecture snapshot for one Agentforce agent: planner, topics, actions, flows, Apex, prompt templates, and NGA plugins.
-- **[agentforce-d360-analyze](agentforce-d360-analyze/SKILL.md)** — Data Cloud 360° view of a single Agentforce session.
-- **[agentforce-generate](agentforce-generate/SKILL.md)** — Build, modify, debug, and deploy agents with Agentforce Agent Script.
-- **[agentforce-observe](agentforce-observe/SKILL.md)** — Analyze production Agentforce agent behavior using session traces and Data Cloud.
-- **[agentforce-test](agentforce-test/SKILL.md)** — Write, run, and analyze structured test suites for Agentforce agents.
-- **[automation-flow-generate](automation-flow-generate/SKILL.md)** — Generate Salesforce Flows using the MCP tool execute_metadata_action.
-- **[commerce-b2b-open-code-components-integrate](commerce-b2b-open-code-components-integrate/SKILL.md)** — Integrate Salesforce B2B Commerce open source components from GitHub into B2B Commerce stores.
-- **[commerce-b2b-open-code-components-replace](commerce-b2b-open-code-components-replace/SKILL.md)** — Replace OOTB B2B Commerce components with open source equivalents in site metadata.
-- **[commerce-b2b-store-create](commerce-b2b-store-create/SKILL.md)** — Interactive workflow to create Commerce B2B Stores and retrieve storefront metadata.
-- **[data360-activate](data360-activate/SKILL.md)** — Salesforce Data Cloud Act phase.
-- **[data360-code-extension-generate](data360-code-extension-generate/SKILL.md)** — Develop and deploy Data Cloud Code Extensions using SF CLI plugin.
-- **[data360-connect](data360-connect/SKILL.md)** — Salesforce Data Cloud Connect phase.
-- **[data360-harmonize](data360-harmonize/SKILL.md)** — Salesforce Data Cloud Harmonize phase.
-- **[data360-orchestrate](data360-orchestrate/SKILL.md)** — Salesforce Data Cloud product orchestrator for connect→prepare→harmonize→segment→act workflows.
-- **[data360-prepare](data360-prepare/SKILL.md)** — Salesforce Data Cloud Prepare phase.
-- **[data360-query](data360-query/SKILL.md)** — Salesforce Data Cloud Retrieve phase.
-- **[data360-schema-get](data360-schema-get/SKILL.md)** — Retrieve DLO/DMO schema information from Salesforce Data Cloud using REST APIs.
-- **[data360-segment](data360-segment/SKILL.md)** — Salesforce Data Cloud Segment phase.
-- **[design-systems-slds-apply](design-systems-slds-apply/SKILL.md)** — Apply SLDS-compliant UI using the correct blueprints, styling hooks, utility classes, and icons.
-- **[design-systems-slds-validate](design-systems-slds-validate/SKILL.md)** — Audit Lightning Web Components for SLDS compliance and produce a scored quality report.
-- **[design-systems-slds2-migrate](design-systems-slds2-migrate/SKILL.md)** — Migrate Lightning Web Components from SLDS 1 to SLDS 2.
-- **[dx-app-analytics-query](dx-app-analytics-query/SKILL.md)** — ISV App Analytics metadata types — AppAnalyticsQueryRequest and AppAnalyticsSettings.
-- **[dx-code-analyzer-configure](dx-code-analyzer-configure/SKILL.md)** — Set up, configure, and troubleshoot Salesforce Code Analyzer for any project.
-- **[dx-code-analyzer-custom-rule-create](dx-code-analyzer-custom-rule-create/SKILL.md)** — Create custom Code Analyzer rules for Regex, PMD, and ESLint.
-- **[dx-code-analyzer-run](dx-code-analyzer-run/SKILL.md)** — Run Salesforce Code Analyzer to scan code for security, performance, best practice, and code style violations.
-- **[dx-devops-test-failures-analyze](dx-devops-test-failures-analyze/SKILL.md)** — Analyzes DevOps Center test failures and Code Analyzer violations in plain language.
-- **[dx-devops-test-pipeline-configure](dx-devops-test-pipeline-configure/SKILL.md)** — Configures DevOps Center pipeline testing infrastructure and quality gates.
-- **[dx-devops-test-suite-assignments-configure](dx-devops-test-suite-assignments-configure/SKILL.md)** — Recommends and manages DevOps Center test suite assignments for pipeline stages.
-- **[dx-devops-test-suite-run](dx-devops-test-suite-run/SKILL.md)** — Runs DevOps Center test suites on a pipeline stage end to end.
-- **[dx-org-manage](dx-org-manage/SKILL.md)** — Execute Salesforce org operations: create scratch orgs, create org snapshots, open orgs in browser.
-- **[dx-org-permission-set-assign](dx-org-permission-set-assign/SKILL.md)** — Assign permission sets to org users.
-- **[dx-org-switch](dx-org-switch/SKILL.md)** — Switches the active Salesforce org (default target-org) using the Salesforce CLI.
-- **[dx-pkg-post-install-configure](dx-pkg-post-install-configure/SKILL.md)** — Automate managed package post-install configuration.
-- **[experience-cms-brand-apply](experience-cms-brand-apply/SKILL.md)** — Extracts, retrieves, and applies CMS brand guidelines to generated content.
-- **[experience-content-media-search](experience-content-media-search/SKILL.md)** — Searches for and retrieves existing visual media from sources such as brand kits and CMS.
-- **[experience-lwc-generate](experience-lwc-generate/SKILL.md)** — Lightning Web Components with PICKLES methodology and 165-point scoring.
-- **[experience-ui-bundle-agentforce-client-generate](experience-ui-bundle-agentforce-client-generate/SKILL.md)** — Add, embed, integrate, configure, style, or remove an agent/chat widget in a UI Bundle project.
-- **[experience-ui-bundle-app-coordinate](experience-ui-bundle-app-coordinate/SKILL.md)** — Build, create, or generate a React application/SPA/frontend as a UI Bundle.
-- **[experience-ui-bundle-custom-app-generate](experience-ui-bundle-custom-app-generate/SKILL.md)** — Create or configure a Custom Application for hosting a UI bundle.
-- **[experience-ui-bundle-deploy](experience-ui-bundle-deploy/SKILL.md)** — Deploy a UI bundle project to an org, including post-deploy setup.
-- **[experience-ui-bundle-features-generate](experience-ui-bundle-features-generate/SKILL.md)** — Add authentication or search to a UI bundle app.
-- **[experience-ui-bundle-file-upload-generate](experience-ui-bundle-file-upload-generate/SKILL.md)** — Add file uploading/attaching/dropping to a UI bundle app.
-- **[experience-ui-bundle-frontend-generate](experience-ui-bundle-frontend-generate/SKILL.md)** — Edit an existing UI bundle app's pages, components, layout, and styling.
-- **[experience-ui-bundle-metadata-generate](experience-ui-bundle-metadata-generate/SKILL.md)** — Add a front-end React UI bundle to an existing project or configure UI bundle metadata.
-- **[experience-ui-bundle-salesforce-data-access](experience-ui-bundle-salesforce-data-access/SKILL.md)** — Perform Salesforce record operations from a UI bundle project.
-- **[experience-ui-bundle-site-generate](experience-ui-bundle-site-generate/SKILL.md)** — Create or configure UI bundle site infrastructure.
-- **[external-diagram-mermaid-generate](external-diagram-mermaid-generate/SKILL.md)** — Salesforce architecture diagrams using Mermaid with ASCII fallback.
-- **[integration-connectivity-connected-app-configure](integration-connectivity-connected-app-configure/SKILL.md)** — Salesforce Connected Apps and External Client Apps OAuth configuration.
-- **[integration-connectivity-generate](integration-connectivity-generate/SKILL.md)** — Salesforce integration architecture and runtime plumbing.
-- **[integration-eventing-cdc-configure](integration-eventing-cdc-configure/SKILL.md)** — Enable Change Data Capture, configure custom event channels, filters, and enrichment fields.
-- **[integration-eventing-subscription-configure](integration-eventing-subscription-configure/SKILL.md)** — Create, read, update, and delete ManagedEventSubscription metadata.
-- **[mobile-apps-create](mobile-apps-create/SKILL.md)** — Entry point for building any Salesforce native mobile app on iOS or Android.
-- **[mobile-platform-native-capabilities-integrate](mobile-platform-native-capabilities-integrate/SKILL.md)** — Build an LWC that uses native mobile device capabilities (barcode scanner, biometrics, location, NFC, etc.).
-- **[mobile-platform-offline-validate](mobile-platform-offline-validate/SKILL.md)** — Review an LWC for mobile offline compatibility using the Komaci static analyzer.
-- **[omnistudio-callable-apex-generate](omnistudio-callable-apex-generate/SKILL.md)** — OmniStudio/Vlocity Apex callable generation and review with 120-point scoring.
-- **[omnistudio-datamapper-generate](omnistudio-datamapper-generate/SKILL.md)** — OmniStudio Data Mapper (DataRaptor) creation and validation.
-- **[omnistudio-datapacks-deploy](omnistudio-datapacks-deploy/SKILL.md)** — Salesforce Industries DataPack deployment automation using Vlocity Build.
-- **[omnistudio-dependencies-analyze](omnistudio-dependencies-analyze/SKILL.md)** — Cross-cutting OmniStudio dependency and impact analysis.
-- **[omnistudio-epc-catalog-generate](omnistudio-epc-catalog-generate/SKILL.md)** — CME EPC product-modeling skill for Product2-based catalog creation.
-- **[omnistudio-flexcard-generate](omnistudio-flexcard-generate/SKILL.md)** — OmniStudio FlexCard creation and validation.
-- **[omnistudio-integration-procedure-generate](omnistudio-integration-procedure-generate/SKILL.md)** — OmniStudio Integration Procedure creation and validation.
-- **[omnistudio-omniscript-generate](omnistudio-omniscript-generate/SKILL.md)** — OmniStudio OmniScript creation and validation.
-- **[platform-agentexchange-partner-offers-configure](platform-agentexchange-partner-offers-configure/SKILL.md)** — Enable or disable the org preference controlling partner offers from the Transactable Marketplace.
-- **[platform-agentsetup-categories-fetch](platform-agentsetup-categories-fetch/SKILL.md)** — Fetch agentic setup prompt categories from a connected org via the Connect API.
-- **[platform-apex-generate](platform-apex-generate/SKILL.md)** — Primary Apex authoring skill for class generation, refactoring, and review.
-- **[platform-apex-logs-debug](platform-apex-logs-debug/SKILL.md)** — Salesforce debug log analysis and troubleshooting.
-- **[platform-apex-test-generate](platform-apex-test-generate/SKILL.md)** — Generate and validate Apex test classes with TestDataFactory patterns and bulk testing.
-- **[platform-apex-test-run](platform-apex-test-run/SKILL.md)** — Apex test execution, coverage analysis, and test-fix loops.
-- **[platform-custom-application-generate](platform-custom-application-generate/SKILL.md)** — Create or configure tab-based Custom Applications with navigation and branding.
-- **[platform-custom-field-generate](platform-custom-field-generate/SKILL.md)** — Create, generate, or validate Salesforce Custom Field metadata.
-- **[platform-custom-lightning-type-generate](platform-custom-lightning-type-generate/SKILL.md)** — Create Custom Lightning Types for Einstein Agent actions or structured schemas.
-- **[platform-custom-object-generate](platform-custom-object-generate/SKILL.md)** — Create, generate, or validate Salesforce Custom Object metadata.
-- **[platform-custom-report-type-generate](platform-custom-report-type-generate/SKILL.md)** — Create, generate, or validate Salesforce Custom Report Type metadata.
-- **[platform-custom-tab-generate](platform-custom-tab-generate/SKILL.md)** — Create or configure Salesforce Custom Tabs.
-- **[platform-data-manage](platform-data-manage/SKILL.md)** — Salesforce data operations with 130-point scoring.
-- **[platform-dataspace-access-configure](platform-dataspace-access-configure/SKILL.md)** — Configure Data Cloud DataSpace access for permission sets.
-- **[platform-docs-get](platform-docs-get/SKILL.md)** — Official Salesforce documentation retrieval skill.
-- **[platform-encryption-configure](platform-encryption-configure/SKILL.md)** — Configure Salesforce Shield Platform Encryption settings and encrypted-field metadata.
-- **[platform-flexipage-generate](platform-flexipage-generate/SKILL.md)** — Create, generate, modify, or validate Salesforce Lightning pages (FlexiPages).
-- **[platform-lightning-app-coordinate](platform-lightning-app-coordinate/SKILL.md)** — Build complete Salesforce Lightning Experience applications from natural language descriptions.
-- **[platform-list-view-generate](platform-list-view-generate/SKILL.md)** — Create, generate, or validate Salesforce List View metadata.
-- **[platform-metadata-api-context-get](platform-metadata-api-context-get/SKILL.md)** — Companion schema/API-context skill for metadata generation skills.
-- **[platform-metadata-deploy](platform-metadata-deploy/SKILL.md)** — Salesforce DevOps automation using sf CLI v2.
-- **[platform-metadata-retrieve](platform-metadata-retrieve/SKILL.md)** — Retrieve metadata from an org to your local project.
-- **[platform-models-api-configure](platform-models-api-configure/SKILL.md)** — Configure an AI coding agent/CLI to route through the Salesforce Models API using a signed OrgJWT.
-- **[platform-permission-set-generate](platform-permission-set-generate/SKILL.md)** — Generate deployable Salesforce permission set metadata.
-- **[platform-policy-rule-generate](platform-policy-rule-generate/SKILL.md)** — Author PolicyRuleDefinition and PolicyRuleDefinitionSet metadata for Data Cloud governance.
-- **[platform-sharing-rules-generate](platform-sharing-rules-generate/SKILL.md)** — Create, generate, or modify Salesforce Sharing Rules metadata.
-- **[platform-soql-query](platform-soql-query/SKILL.md)** — SOQL query generation, optimization, and analysis.
-- **[platform-tracing-agentforce-configure](platform-tracing-agentforce-configure/SKILL.md)** — Enable or disable Agentforce agent execution trace spans flowing to Data Cloud.
-- **[platform-tracing-configure](platform-tracing-configure/SKILL.md)** — Enable or disable Platform Tracing (TraceSpanEvent publishing) in Event Monitoring.
-- **[platform-trust-archive-manage](platform-trust-archive-manage/SKILL.md)** — Search, view, unarchive, analyze, mask, and erase Salesforce Trusted Services Archive data.
-- **[platform-validation-rule-generate](platform-validation-rule-generate/SKILL.md)** — Create, modify, or validate Salesforce Validation Rules.
-- **[platform-value-set-generate](platform-value-set-generate/SKILL.md)** — Create, generate, or validate a Salesforce global value set or customize a standard value set.
+### Workday
 
-## Keeping vendored skills in sync
+- **[workday-rest-integrate](workday/workday-rest-integrate/SKILL.md)** — Integrate with Workday's REST API and Report-as-a-Service (RaaS) for HCM and Financials data — ISU/OAuth2 auth, tenant URL structure, and Workday-specific quirks like WID vs Reference ID.
+- **[workday-eib-build](workday/workday-eib-build/SKILL.md)** — Build Workday EIB (Enterprise Interface Builder) inbound/outbound integrations — when to use EIB vs REST/RaaS/Studio, data transformation, and load sequencing.
 
-Upstream ([forcedotcom/sf-skills](https://github.com/forcedotcom/sf-skills)) changes frequently. To refresh the vendored skills, re-sync the `skills/` folder from upstream and re-run the description extraction — this repo does not currently automate that sync.
+### Excel
+
+- **[excel-formula-generate](excel/excel-formula-generate/SKILL.md)** — Generate and debug complex Excel formulas, with emphasis on modern dynamic-array functions (XLOOKUP, FILTER, SORT, UNIQUE, LET, LAMBDA) and systematic error tracing.
+- **[excel-vba-automate](excel/excel-vba-automate/SKILL.md)** — Write and review VBA macros for Excel automation, covering the object model, event-driven procedures, and error handling.
+- **[excel-power-query-build](excel/excel-power-query-build/SKILL.md)** — Build Power Query (M language) transformations for Excel data models, covering query folding and refreshable external connections.
+- **[excel-dashboard-build](excel/excel-dashboard-build/SKILL.md)** — Build interactive Excel dashboards with PivotTables, slicers, chart selection, and performance tuning for large workbooks.
+
+### Google Sheets
+
+- **[sheets-apps-script-generate](google-sheets/sheets-apps-script-generate/SKILL.md)** — Write Google Apps Script to automate Sheets — custom functions, triggers, SpreadsheetApp manipulation, and external API calls via UrlFetchApp.
+
+### Jira
+
+- **[jira-workflow-configure](jira/jira-workflow-configure/SKILL.md)** — Configure Jira workflows, statuses, transitions, and automation rules.
+- **[jira-bulk-issue-manage](jira/jira-bulk-issue-manage/SKILL.md)** — Bulk create, update, and migrate Jira issues via the REST API using JQL, the bulk endpoints, and rate-limit handling.
+
+### ServiceNow
+
+- **[servicenow-flow-generate](servicenow/servicenow-flow-generate/SKILL.md)** — Build ServiceNow Flow Designer flows and subflows — trigger selection, actions vs. subflows, and data pill wiring.
+- **[servicenow-script-generate](servicenow/servicenow-script-generate/SKILL.md)** — Write ServiceNow server-side/client-side scripts — Script Includes, Business Rules, Client Scripts, and GlideRecord/GlideAjax patterns.
+
+### NetSuite
+
+- **[netsuite-suitescript-generate](netsuite/netsuite-suitescript-generate/SKILL.md)** — Write NetSuite SuiteScript 2.x — script-type selection, N/record and N/search modules, and governance/usage-unit limits.
+
+### SAP
+
+- **[sap-odata-integrate](sap/sap-odata-integrate/SKILL.md)** — Integrate with SAP OData services (Gateway/OData V2 and S/4HANA Cloud V4) — auth patterns, metadata-driven entity discovery, and batch requests.
+
+### ADP
+
+- **[adp-workforce-now-integrate](adp/adp-workforce-now-integrate/SKILL.md)** — Integrate with ADP Workforce Now — OAuth2 + mutual TLS auth, common HR/payroll endpoints, and event subscriptions vs. polling.
+
+### Slack
+
+- **[slack-workflow-build](slack/slack-workflow-build/SKILL.md)** — Build Slack workflows, slash commands, and bot automations with the Bolt framework, plus Workflow Builder vs. custom app guidance.
+
+### Power Platform
+
+- **[power-automate-flow-build](power-platform/power-automate-flow-build/SKILL.md)** — Build Power Automate cloud flows — trigger types, connector licensing, control patterns, and error handling.
+- **[power-bi-report-generate](power-platform/power-bi-report-generate/SKILL.md)** — Build Power BI reports and data models — star schema, DAX measures vs. calculated columns, and performance tuning.
+
+### Zendesk
+
+- **[zendesk-api-integrate](zendesk/zendesk-api-integrate/SKILL.md)** — Integrate with the Zendesk API — auth, core resources, Triggers/Automations for ticket routing, and incremental export for syncing.
 
 ## License
 
-Original content (including `agent-analyzer/`) is licensed under [LICENSE](LICENSE) (MIT). Vendored skills from Salesforce's sf-skills are licensed under Apache License 2.0 — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Original content is licensed under [LICENSE](LICENSE) (MIT). Vendored Salesforce skills are licensed under Apache License 2.0 — see [salesforce/THIRD_PARTY_NOTICES.md](salesforce/THIRD_PARTY_NOTICES.md).
