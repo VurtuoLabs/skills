@@ -19,7 +19,8 @@ skills/
 ├── slack/                    # Slack
 ├── power-platform/            # Power Automate / Power BI
 ├── zendesk/                    # Zendesk
-└── consulting/                  # Client-services scoping, tracking, transitions
+├── consulting/                  # Client-services scoping, tracking, transitions
+└── agentic-graphs/               # Advanced graph-based agentic loop architecture
 ```
 
 Each skill folder contains:
@@ -109,6 +110,19 @@ Client-services skills for scoping, tracking, and transitioning engagements — 
 - **[client-context-switch](consulting/client-context-switch/SKILL.md)** — Reconstructs a compact briefing for a specific client when switching back to it among multiple concurrent engagements.
 - **[handoff-doc-generate](consulting/handoff-doc-generate/SKILL.md)** — Produces a project handoff/knowledge-transfer doc when rolling off or transitioning an engagement.
 - **[engagement-retro-facilitate](consulting/engagement-retro-facilitate/SKILL.md)** — Runs a structured end-of-engagement retrospective and converts it into action items.
+
+### Agentic Graphs
+
+Advanced, framework-agnostic skills for designing graph-based agentic loop architectures with Claude — for engineers building production agentic systems. Full list: [agentic-graphs/README.md](agentic-graphs/README.md).
+
+- **[agent-graph-design](agentic-graphs/agent-graph-design/SKILL.md)** — When a graph beats a linear loop or a single long-running agent, node granularity, and the deterministic-code-vs-LLM-judgment line.
+- **[graph-state-schema-design](agentic-graphs/graph-state-schema-design/SKILL.md)** — What belongs in shared state vs. what to recompute, preventing context bloat, reducer design, and schema versioning.
+- **[loop-termination-guard](agentic-graphs/loop-termination-guard/SKILL.md)** — Robust stop conditions, detecting non-convergence, and layering multiple termination guards.
+- **[conditional-routing-design](agentic-graphs/conditional-routing-design/SKILL.md)** — Router node design: classifier vs. rule-based routing and handling low-confidence decisions.
+- **[multi-agent-supervisor-orchestrate](agentic-graphs/multi-agent-supervisor-orchestrate/SKILL.md)** — Supervisor/worker topologies, the dispatch-collect-decide loop, and failure isolation between workers.
+- **[self-correction-loop-design](agentic-graphs/self-correction-loop-design/SKILL.md)** — Generate-critique-revise loops as separate nodes with concrete pass/fail criteria and bounded iteration.
+- **[graph-checkpoint-resume](agentic-graphs/graph-checkpoint-resume/SKILL.md)** — Persistence/checkpointing so long-running graphs survive crashes without corrupting state or double-firing side effects.
+- **[human-in-the-loop-interrupt](agentic-graphs/human-in-the-loop-interrupt/SKILL.md)** — Approval/interrupt checkpoints before irreversible actions, payload design, and avoiding rubber-stamp fatigue.
 
 ## License
 
