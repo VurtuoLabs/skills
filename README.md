@@ -126,4 +126,4 @@ Advanced, framework-agnostic skills for designing graph-based agentic loop archi
 
 ## License
 
-Original content is licensed under [LICENSE](LICENSE) (MIT). Vendored Salesforce skills are licensed under Apache License 2.0 — see [salesforce/THIRD_PARTY_NOTICES.md](salesforce/THIRD_PARTY_NOTICES.md).
+Original content © 2026 VurtuoLabs, licensed under [LICENSE](LICENSE) (MIT). Vendored Salesforce skills are licensed under Apache License 2.0, see [salesforce/THIRD_PARTY_NOTICES.md](salesforce/THIRD_PARTY_NOTICES.md).
